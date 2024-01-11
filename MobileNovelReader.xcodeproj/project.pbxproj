@@ -1,0 +1,593 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		31529F7D2B50A68B00663E43 /* MobileNovelReaderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31529F7C2B50A68B00663E43 /* MobileNovelReaderApp.swift */; };
+		31529F7F2B50A68B00663E43 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31529F7E2B50A68B00663E43 /* ContentView.swift */; };
+		31529F812B50A68C00663E43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31529F802B50A68C00663E43 /* Assets.xcassets */; };
+		31529F842B50A68C00663E43 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31529F832B50A68C00663E43 /* Preview Assets.xcassets */; };
+		31529F8E2B50A68C00663E43 /* MobileNovelReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31529F8D2B50A68C00663E43 /* MobileNovelReaderTests.swift */; };
+		31529F982B50A68C00663E43 /* MobileNovelReaderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31529F972B50A68C00663E43 /* MobileNovelReaderUITests.swift */; };
+		31529F9A2B50A68C00663E43 /* MobileNovelReaderUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31529F992B50A68C00663E43 /* MobileNovelReaderUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		31529F8A2B50A68C00663E43 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 31529F712B50A68B00663E43 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 31529F782B50A68B00663E43;
+			remoteInfo = MobileNovelReader;
+		};
+		31529F942B50A68C00663E43 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 31529F712B50A68B00663E43 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 31529F782B50A68B00663E43;
+			remoteInfo = MobileNovelReader;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		31529F792B50A68B00663E43 /* MobileNovelReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileNovelReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		31529F7C2B50A68B00663E43 /* MobileNovelReaderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileNovelReaderApp.swift; sourceTree = "<group>"; };
+		31529F7E2B50A68B00663E43 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		31529F802B50A68C00663E43 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		31529F832B50A68C00663E43 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		31529F892B50A68C00663E43 /* MobileNovelReaderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MobileNovelReaderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		31529F8D2B50A68C00663E43 /* MobileNovelReaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileNovelReaderTests.swift; sourceTree = "<group>"; };
+		31529F932B50A68C00663E43 /* MobileNovelReaderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MobileNovelReaderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		31529F972B50A68C00663E43 /* MobileNovelReaderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileNovelReaderUITests.swift; sourceTree = "<group>"; };
+		31529F992B50A68C00663E43 /* MobileNovelReaderUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileNovelReaderUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		31529F762B50A68B00663E43 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		31529F862B50A68C00663E43 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		31529F902B50A68C00663E43 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		31529F702B50A68B00663E43 = {
+			isa = PBXGroup;
+			children = (
+				31529F7B2B50A68B00663E43 /* MobileNovelReader */,
+				31529F8C2B50A68C00663E43 /* MobileNovelReaderTests */,
+				31529F962B50A68C00663E43 /* MobileNovelReaderUITests */,
+				31529F7A2B50A68B00663E43 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		31529F7A2B50A68B00663E43 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				31529F792B50A68B00663E43 /* MobileNovelReader.app */,
+				31529F892B50A68C00663E43 /* MobileNovelReaderTests.xctest */,
+				31529F932B50A68C00663E43 /* MobileNovelReaderUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		31529F7B2B50A68B00663E43 /* MobileNovelReader */ = {
+			isa = PBXGroup;
+			children = (
+				31529F7C2B50A68B00663E43 /* MobileNovelReaderApp.swift */,
+				31529F7E2B50A68B00663E43 /* ContentView.swift */,
+				31529F802B50A68C00663E43 /* Assets.xcassets */,
+				31529F822B50A68C00663E43 /* Preview Content */,
+			);
+			path = MobileNovelReader;
+			sourceTree = "<group>";
+		};
+		31529F822B50A68C00663E43 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				31529F832B50A68C00663E43 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		31529F8C2B50A68C00663E43 /* MobileNovelReaderTests */ = {
+			isa = PBXGroup;
+			children = (
+				31529F8D2B50A68C00663E43 /* MobileNovelReaderTests.swift */,
+			);
+			path = MobileNovelReaderTests;
+			sourceTree = "<group>";
+		};
+		31529F962B50A68C00663E43 /* MobileNovelReaderUITests */ = {
+			isa = PBXGroup;
+			children = (
+				31529F972B50A68C00663E43 /* MobileNovelReaderUITests.swift */,
+				31529F992B50A68C00663E43 /* MobileNovelReaderUITestsLaunchTests.swift */,
+			);
+			path = MobileNovelReaderUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		31529F782B50A68B00663E43 /* MobileNovelReader */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 31529F9D2B50A68C00663E43 /* Build configuration list for PBXNativeTarget "MobileNovelReader" */;
+			buildPhases = (
+				31529F752B50A68B00663E43 /* Sources */,
+				31529F762B50A68B00663E43 /* Frameworks */,
+				31529F772B50A68B00663E43 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MobileNovelReader;
+			productName = MobileNovelReader;
+			productReference = 31529F792B50A68B00663E43 /* MobileNovelReader.app */;
+			productType = "com.apple.product-type.application";
+		};
+		31529F882B50A68C00663E43 /* MobileNovelReaderTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 31529FA02B50A68C00663E43 /* Build configuration list for PBXNativeTarget "MobileNovelReaderTests" */;
+			buildPhases = (
+				31529F852B50A68C00663E43 /* Sources */,
+				31529F862B50A68C00663E43 /* Frameworks */,
+				31529F872B50A68C00663E43 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				31529F8B2B50A68C00663E43 /* PBXTargetDependency */,
+			);
+			name = MobileNovelReaderTests;
+			productName = MobileNovelReaderTests;
+			productReference = 31529F892B50A68C00663E43 /* MobileNovelReaderTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		31529F922B50A68C00663E43 /* MobileNovelReaderUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 31529FA32B50A68C00663E43 /* Build configuration list for PBXNativeTarget "MobileNovelReaderUITests" */;
+			buildPhases = (
+				31529F8F2B50A68C00663E43 /* Sources */,
+				31529F902B50A68C00663E43 /* Frameworks */,
+				31529F912B50A68C00663E43 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				31529F952B50A68C00663E43 /* PBXTargetDependency */,
+			);
+			name = MobileNovelReaderUITests;
+			productName = MobileNovelReaderUITests;
+			productReference = 31529F932B50A68C00663E43 /* MobileNovelReaderUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		31529F712B50A68B00663E43 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1510;
+				LastUpgradeCheck = 1510;
+				TargetAttributes = {
+					31529F782B50A68B00663E43 = {
+						CreatedOnToolsVersion = 15.1;
+					};
+					31529F882B50A68C00663E43 = {
+						CreatedOnToolsVersion = 15.1;
+						TestTargetID = 31529F782B50A68B00663E43;
+					};
+					31529F922B50A68C00663E43 = {
+						CreatedOnToolsVersion = 15.1;
+						TestTargetID = 31529F782B50A68B00663E43;
+					};
+				};
+			};
+			buildConfigurationList = 31529F742B50A68B00663E43 /* Build configuration list for PBXProject "MobileNovelReader" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 31529F702B50A68B00663E43;
+			productRefGroup = 31529F7A2B50A68B00663E43 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				31529F782B50A68B00663E43 /* MobileNovelReader */,
+				31529F882B50A68C00663E43 /* MobileNovelReaderTests */,
+				31529F922B50A68C00663E43 /* MobileNovelReaderUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		31529F772B50A68B00663E43 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				31529F842B50A68C00663E43 /* Preview Assets.xcassets in Resources */,
+				31529F812B50A68C00663E43 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		31529F872B50A68C00663E43 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		31529F912B50A68C00663E43 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		31529F752B50A68B00663E43 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				31529F7F2B50A68B00663E43 /* ContentView.swift in Sources */,
+				31529F7D2B50A68B00663E43 /* MobileNovelReaderApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		31529F852B50A68C00663E43 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				31529F8E2B50A68C00663E43 /* MobileNovelReaderTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		31529F8F2B50A68C00663E43 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				31529F9A2B50A68C00663E43 /* MobileNovelReaderUITestsLaunchTests.swift in Sources */,
+				31529F982B50A68C00663E43 /* MobileNovelReaderUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		31529F8B2B50A68C00663E43 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 31529F782B50A68B00663E43 /* MobileNovelReader */;
+			targetProxy = 31529F8A2B50A68C00663E43 /* PBXContainerItemProxy */;
+		};
+		31529F952B50A68C00663E43 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 31529F782B50A68B00663E43 /* MobileNovelReader */;
+			targetProxy = 31529F942B50A68C00663E43 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		31529F9B2B50A68C00663E43 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		31529F9C2B50A68C00663E43 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		31529F9E2B50A68C00663E43 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"MobileNovelReader/Preview Content\"";
+				DEVELOPMENT_TEAM = NBR5Z6C9C8;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.knowledge.sharing.MobileNovelReader;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		31529F9F2B50A68C00663E43 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"MobileNovelReader/Preview Content\"";
+				DEVELOPMENT_TEAM = NBR5Z6C9C8;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.knowledge.sharing.MobileNovelReader;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		31529FA12B50A68C00663E43 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NBR5Z6C9C8;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.knowledge.sharing.MobileNovelReaderTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MobileNovelReader.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MobileNovelReader";
+			};
+			name = Debug;
+		};
+		31529FA22B50A68C00663E43 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NBR5Z6C9C8;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.knowledge.sharing.MobileNovelReaderTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MobileNovelReader.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MobileNovelReader";
+			};
+			name = Release;
+		};
+		31529FA42B50A68C00663E43 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NBR5Z6C9C8;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.knowledge.sharing.MobileNovelReaderUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MobileNovelReader;
+			};
+			name = Debug;
+		};
+		31529FA52B50A68C00663E43 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NBR5Z6C9C8;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.knowledge.sharing.MobileNovelReaderUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MobileNovelReader;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		31529F742B50A68B00663E43 /* Build configuration list for PBXProject "MobileNovelReader" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				31529F9B2B50A68C00663E43 /* Debug */,
+				31529F9C2B50A68C00663E43 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		31529F9D2B50A68C00663E43 /* Build configuration list for PBXNativeTarget "MobileNovelReader" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				31529F9E2B50A68C00663E43 /* Debug */,
+				31529F9F2B50A68C00663E43 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		31529FA02B50A68C00663E43 /* Build configuration list for PBXNativeTarget "MobileNovelReaderTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				31529FA12B50A68C00663E43 /* Debug */,
+				31529FA22B50A68C00663E43 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		31529FA32B50A68C00663E43 /* Build configuration list for PBXNativeTarget "MobileNovelReaderUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				31529FA42B50A68C00663E43 /* Debug */,
+				31529FA52B50A68C00663E43 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 31529F712B50A68B00663E43 /* Project object */;
+}
