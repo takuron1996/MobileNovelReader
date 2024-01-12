@@ -14,6 +14,7 @@
 		31529F8E2B50A68C00663E43 /* MobileNovelReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31529F8D2B50A68C00663E43 /* MobileNovelReaderTests.swift */; };
 		31529F982B50A68C00663E43 /* MobileNovelReaderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31529F972B50A68C00663E43 /* MobileNovelReaderUITests.swift */; };
 		31529F9A2B50A68C00663E43 /* MobileNovelReaderUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31529F992B50A68C00663E43 /* MobileNovelReaderUITestsLaunchTests.swift */; };
+		31529FA72B50AD6300663E43 /* NovelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31529FA62B50AD6300663E43 /* NovelViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		31529F932B50A68C00663E43 /* MobileNovelReaderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MobileNovelReaderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		31529F972B50A68C00663E43 /* MobileNovelReaderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileNovelReaderUITests.swift; sourceTree = "<group>"; };
 		31529F992B50A68C00663E43 /* MobileNovelReaderUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileNovelReaderUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		31529FA62B50AD6300663E43 /* NovelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovelViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 				31529F7E2B50A68B00663E43 /* ContentView.swift */,
 				31529F802B50A68C00663E43 /* Assets.xcassets */,
 				31529F822B50A68C00663E43 /* Preview Content */,
+				31529FA62B50AD6300663E43 /* NovelViewController.swift */,
 			);
 			path = MobileNovelReader;
 			sourceTree = "<group>";
@@ -258,6 +261,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				31529F7F2B50A68B00663E43 /* ContentView.swift in Sources */,
+				31529FA72B50AD6300663E43 /* NovelViewController.swift in Sources */,
 				31529F7D2B50A68B00663E43 /* MobileNovelReaderApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -12,6 +12,7 @@ struct MobileNovelReaderApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+            NovelViewControllerRepresentable()
         }
     }
 }
