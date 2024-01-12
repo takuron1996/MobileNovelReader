@@ -12,19 +12,17 @@ class NovelViewController: UIViewController, WKUIDelegate {
         webView.uiDelegate = self
         view = webView
     }
-
-
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let myURL = URL(string:"https://ncode.syosetu.com/n0091ip/1/")
-        let myRequest = URLRequest(url: myURL!)
+        let myRequest = URLRequest(url: UrlModel().url)
         webView.load(myRequest)
     }
 }
 
 struct NovelViewControllerRepresentable: UIViewControllerRepresentable{
-
+    
     func makeUIViewController(context: Context) -> some NovelViewController {
         return NovelViewController()
     }
