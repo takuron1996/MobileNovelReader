@@ -1,0 +1,18 @@
+name: MobileNovelReader
+options:
+  bundleIdPrefix: com.knowledge.sharing
+targets:
+  MobileNovelReader:
+    type: application
+    platform: iOS
+    deploymentTarget: "17.2"
+    sources: [MobileNovelReader]
+    info:
+      path: MobileNovelReader.xcodeproj/Info.plist
+      properties:
+        UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
+        UILaunchStoryboardName: LaunchScreen
+    entitlements:
+      path: MobileNovelReader.xcodeproj/App.entitlements
+      properties:
+        com.apple.security.application-groups: group.com.app
