@@ -10,22 +10,23 @@ import SwiftUI
 struct NovelDisplayNavView: View {
     @Binding var episode: Int
     var data: MainText
-    @State var isEdit = true
+    // ボタン連打対策
+    @State var isEpisodeEdit = true
     
     var body: some View {
         HStack {
             createButton(condition: data.prev, title: "前の話"){
-                if isEdit {
+                if isEpisodeEdit {
                     episode -= 1
                 }
-                isEdit = false
+                isEpisodeEdit = false
             }
 
             createButton(condition: data.next, title: "次の話"){
-                if isEdit{
+                if isEpisodeEdit{
                     episode += 1
                 }
-                isEdit = false
+                isEpisodeEdit = false
             }
         }
     }
