@@ -7,13 +7,14 @@
 
 import SwiftUI
 
+//TODO 別のFetcherを作成する際に共通化について検討
 class MainTextFetcher: ObservableObject {
     @Published var isLoading = false
     let urlString = "\(config.api_url)/api/maintext"
     
     enum FetchError: Error {
         case badRequest
-        case badJSON
+        case badURL
     }
     
     func fetchData(ncode: String, episode: Int) async throws -> MainText? {
@@ -34,8 +35,7 @@ class MainTextFetcher: ObservableObject {
         ]
         
         guard let url = components?.url else{
-            print("不正なURL")
-            return nil
+            throw FetchError.badURL
         }
         
         let (data, response) = try await URLSession.shared.data(for: URLRequest(url: url))
