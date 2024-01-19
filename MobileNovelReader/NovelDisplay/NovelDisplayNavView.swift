@@ -14,14 +14,14 @@ struct NovelDisplayNavView: View {
     
     var body: some View {
         HStack {
-            creatButton(condition: data.prev, title: "前の話"){
+            createButton(condition: data.prev, title: "前の話"){
                 if isEdit {
                     episode -= 1
                 }
                 isEdit = false
             }
 
-            creatButton(condition: data.next, title: "次の話"){
+            createButton(condition: data.next, title: "次の話"){
                 if isEdit{
                     episode += 1
                 }
@@ -30,7 +30,7 @@ struct NovelDisplayNavView: View {
         }
     }
     
-    private func creatButton(condition: Bool, title: String,action: @escaping () -> Void) -> some View {
+    private func createButton(condition: Bool, title: String,action: @escaping () -> Void) -> some View {
         Group {
             if condition {
                 Button(title, action: action)
