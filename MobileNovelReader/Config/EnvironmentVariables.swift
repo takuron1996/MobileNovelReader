@@ -12,6 +12,8 @@ struct Config {
 }
 
 let config: Config = {
-    let api_url = Bundle.main.object(forInfoDictionaryKey: "API_URL") as! String
+    guard let api_url = Bundle.main.object(forInfoDictionaryKey: "API_URL") as? String else {
+        fatalError("API_URLはInfo.plistで設定する必要があります。")
+    }
     return Config(api_url: api_url)
 }()
