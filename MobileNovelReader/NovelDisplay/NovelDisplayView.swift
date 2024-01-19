@@ -43,6 +43,11 @@ struct NovelDisplayView: View {
                         .frame(maxWidth: .infinity, maxHeight: 40)
                 }else{
                     Text("本文が取得できませんでした。")
+                        .font(.title)
+                        .fontWeight(.bold)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.8)
+                        .frame(minWidth:0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity,alignment: .center)
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
