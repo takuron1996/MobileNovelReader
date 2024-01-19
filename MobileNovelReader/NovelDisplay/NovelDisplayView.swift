@@ -22,9 +22,9 @@ struct NovelDisplayView: View {
                         .scaleEffect(3)
                         .progressViewStyle(CircularProgressViewStyle(tint: .blue))
                         .frame(minWidth:0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-                } else if let mainText = mainTextData {
+                } else if let mainTextData {
                     ScrollView{
-                        Text(mainText.title)
+                        Text(mainTextData.title)
                             .font(.largeTitle)
                             .fontWeight(.bold)
                             .frame(minWidth:0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity,alignment: .center)
@@ -35,11 +35,11 @@ struct NovelDisplayView: View {
                             .minimumScaleFactor(0.2)
                             .padding(.top, 40)
                             .padding(.bottom, 20)
-                        Text(mainText.text)
+                        Text(mainTextData.text)
                             .frame(minWidth:0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    NovelDisplayNavView(episode: $episode,data: mainText)
+                    NovelDisplayNavView(episode: $episode,data: mainTextData)
                         .frame(maxWidth: .infinity, maxHeight: 40)
                 }else{
                     Text("本文が取得できませんでした。")
