@@ -64,7 +64,7 @@ struct NovelDisplayMenuView: View {
     NavigationStack {
         NovelDisplayMenuView(
             episode: .constant(1),
-            data: MainText(title: "title", text: "text", prev: true, next: false)
+            data: MainText(title: "title", sub_title: "text", main_text: ["a", "", "b"], prev: true, next: false)
         )
     }
 }
