@@ -14,49 +14,17 @@ struct NovelDisplayView: View {
     @State var mainTextData: MainText?
     @Environment(\.presentationMode) var presentationMode
     @State private var isTapped = true
-        
+    
     var body: some View {
-        NavigationStack{
-            VStack{
-                Spacer()
-                if fetcher.isLoading {
-                    ProgressView()
-                        .scaleEffect(3)
-                        .progressViewStyle(CircularProgressViewStyle(tint: .blue))
-                        .frame(minWidth:0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-                } else if let mainTextData {
-                    if isTapped{
-                        Button(action: {
-                            presentationMode.wrappedValue.dismiss()
-                        }) {
-                            Image(systemName: "xmark")
-                                .padding()
-                                .foregroundColor(.black)
-                        }
-                        .frame(minWidth:0, maxWidth: .infinity, alignment: .trailing)
-                        Divider().background(Color.black)
-                    }
-                    ScrollView{
-                        Text(mainTextData.title)
-                            .font(.largeTitle)
-                            .fontWeight(.bold)
-                            .frame(minWidth:0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity,alignment: .center)
-                            .padding(.top, 80)
-                        Text("第\(episode)話")
-                            .font(.title)
-                            .frame(minWidth:0, maxWidth: .infinity, minHeight: 0, maxHeight: 50, alignment: .center)
-                            .minimumScaleFactor(0.2)
-                            .padding(.top, 40)
-                            .padding(.bottom, 20)
-                        Text(mainTextData.text)
-                            .frame(minWidth:0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-                    }
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    if isTapped{
-                        NovelDisplayNavView(episode: $episode,data: mainTextData)
-                            .frame(maxWidth: .infinity, maxHeight: 40)
-                    }
-                }else{
+        VStack{
+            Spacer()
+            if fetcher.isLoading {
+                ProgressView()
+                    .scaleEffect(3)
+                    .progressViewStyle(CircularProgressViewStyle(tint: .blue))
+                    .frame(minWidth:0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+            } else if let mainTextData {
+                if isTapped{
                     Button(action: {
                         presentationMode.wrappedValue.dismiss()
                     }) {
@@ -66,17 +34,48 @@ struct NovelDisplayView: View {
                     }
                     .frame(minWidth:0, maxWidth: .infinity, alignment: .trailing)
                     Divider().background(Color.black)
-                    Text("本文が取得できませんでした。")
-                        .font(.title)
-                        .fontWeight(.bold)
-                        .lineLimit(1)
-                        .minimumScaleFactor(0.8)
-                        .frame(minWidth:0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity,alignment: .center)
                 }
+                ScrollView{
+                    Text(mainTextData.title)
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                        .frame(minWidth:0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity,alignment: .center)
+                        .padding(.top, 80)
+                    Text("第\(episode)話")
+                        .font(.title)
+                        .frame(minWidth:0, maxWidth: .infinity, minHeight: 0, maxHeight: 50, alignment: .center)
+                        .minimumScaleFactor(0.2)
+                        .padding(.top, 40)
+                        .padding(.bottom, 20)
+                    Text(mainTextData.text)
+                        .frame(minWidth:0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                if isTapped{
+                    NovelDisplayMenuView(episode: $episode,data: mainTextData)
+                        .frame(maxWidth: .infinity, maxHeight: 40)
+                }
+            }else{
+                Button(action: {
+                    presentationMode.wrappedValue.dismiss()
+                }) {
+                    Image(systemName: "xmark")
+                        .padding()
+                        .foregroundColor(.black)
+                }
+                .frame(minWidth:0, maxWidth: .infinity, alignment: .trailing)
+                Divider().background(Color.black)
+                Text("本文が取得できませんでした。")
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.8)
+                    .frame(minWidth:0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity,alignment: .center)
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .padding(.horizontal, 30)
-        }.task {
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .padding(.horizontal, 30)
+        .task {
             fetchData()
         }
         .onChange(of: episode){
