@@ -12,7 +12,9 @@ struct NovelDisplayView: View {
     var ncode: String
     @State var episode: Int
     @State var mainTextData: MainText?
-    
+    @Environment(\.presentationMode) var presentationMode
+    @State private var isTapped = true
+        
     var body: some View {
         NavigationStack{
             VStack{
@@ -23,6 +25,17 @@ struct NovelDisplayView: View {
                         .progressViewStyle(CircularProgressViewStyle(tint: .blue))
                         .frame(minWidth:0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
                 } else if let mainTextData {
+                    if isTapped{
+                        Button(action: {
+                            presentationMode.wrappedValue.dismiss()
+                        }) {
+                            Image(systemName: "xmark")
+                                .padding()
+                                .foregroundColor(.black)
+                        }
+                        .frame(minWidth:0, maxWidth: .infinity, alignment: .trailing)
+                        Divider().background(Color.black)
+                    }
                     ScrollView{
                         Text(mainTextData.title)
                             .font(.largeTitle)
@@ -39,9 +52,20 @@ struct NovelDisplayView: View {
                             .frame(minWidth:0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    NovelDisplayNavView(episode: $episode,data: mainTextData)
-                        .frame(maxWidth: .infinity, maxHeight: 40)
+                    if isTapped{
+                        NovelDisplayNavView(episode: $episode,data: mainTextData)
+                            .frame(maxWidth: .infinity, maxHeight: 40)
+                    }
                 }else{
+                    Button(action: {
+                        presentationMode.wrappedValue.dismiss()
+                    }) {
+                        Image(systemName: "xmark")
+                            .padding()
+                            .foregroundColor(.black)
+                    }
+                    .frame(minWidth:0, maxWidth: .infinity, alignment: .trailing)
+                    Divider().background(Color.black)
                     Text("本文が取得できませんでした。")
                         .font(.title)
                         .fontWeight(.bold)
@@ -57,7 +81,18 @@ struct NovelDisplayView: View {
         }
         .onChange(of: episode){
             fetchData()
+            isTapped = true
         }
+        .gesture(tapGesture)
+    }
+    
+    private var tapGesture: some Gesture {
+        TapGesture()
+            .onEnded {
+                withAnimation {
+                    isTapped.toggle()
+                }
+            }
     }
     
     private func fetchData() {
