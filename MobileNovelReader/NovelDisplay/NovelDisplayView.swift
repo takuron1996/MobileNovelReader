@@ -32,7 +32,7 @@ struct NovelDisplayView: View {
                             .padding()
                             .foregroundColor(.black)
                     }
-                    .frame(minWidth:0, maxWidth: .infinity, alignment: .trailing)
+                    .frame(minWidth:0, maxWidth: .infinity, minHeight: 0, maxHeight: 20, alignment: .trailing)
                     Divider().background(Color.black)
                 }
                 ScrollView{
@@ -40,15 +40,22 @@ struct NovelDisplayView: View {
                         .font(.largeTitle)
                         .fontWeight(.bold)
                         .frame(minWidth:0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity,alignment: .center)
-                        .padding(.top, 80)
+                        .padding(.top, 40)
                     Text("第\(episode)話")
+                        .font(.title)
+                        .frame(minWidth:0, maxWidth: .infinity, minHeight: 0, maxHeight: 30, alignment: .center)
+                        .minimumScaleFactor(0.2)
+                        .padding(.top, 40)
+                    Text(mainTextData.sub_title)
                         .font(.title)
                         .frame(minWidth:0, maxWidth: .infinity, minHeight: 0, maxHeight: 50, alignment: .center)
                         .minimumScaleFactor(0.2)
-                        .padding(.top, 40)
                         .padding(.bottom, 20)
-                    Text(mainTextData.text)
-                        .frame(minWidth:0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+                    ForEach(Array(mainTextData.main_text.enumerated()), id: \.offset) { _, string in
+                        Text(string)
+                            .frame(minWidth:0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity,alignment: .leading)
+                        
+                    }
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 if isTapped{
