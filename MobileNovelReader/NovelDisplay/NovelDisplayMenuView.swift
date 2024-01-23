@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct NovelDisplayNavView: View {
+struct NovelDisplayMenuView: View {
     @Binding var episode: Int
     var data: MainText
     // ボタン連打対策
@@ -62,7 +62,7 @@ struct NovelDisplayNavView: View {
 
 #Preview {
     NavigationStack {
-        NovelDisplayNavView(
+        NovelDisplayMenuView(
             episode: .constant(1),
             data: MainText(title: "title", text: "text", prev: true, next: false)
         )
