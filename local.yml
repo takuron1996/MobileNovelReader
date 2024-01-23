@@ -1,0 +1,9 @@
+include:
+  - base.yml
+settings:
+  API_URL: http://localhost:8080
+targets:
+  MobileNovelReader:
+    info:
+      properties:
+        API_URL: ${API_URL}
