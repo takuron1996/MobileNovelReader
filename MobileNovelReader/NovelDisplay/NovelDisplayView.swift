@@ -51,11 +51,8 @@ struct NovelDisplayView: View {
                         .frame(minWidth:0, maxWidth: .infinity, minHeight: 0, maxHeight: 50, alignment: .center)
                         .minimumScaleFactor(0.2)
                         .padding(.bottom, 20)
-                    ForEach(Array(mainTextData.main_text.enumerated()), id: \.offset) { _, string in
-                        Text(string)
-                            .frame(minWidth:0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity,alignment: .leading)
-                        
-                    }
+                    Text(mainTextData.main_text.joined(separator: "\n"))
+                        .frame(minWidth:0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity,alignment: .leading)
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 if isTapped{
