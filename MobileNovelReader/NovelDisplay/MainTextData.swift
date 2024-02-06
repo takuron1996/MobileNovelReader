@@ -9,7 +9,8 @@ import SwiftUI
 
 struct MainText: Codable {
     var title: String
-    var text: String
+    var sub_title: String
+    var main_text: [String]
     var prev: Bool
     var next: Bool
 }
