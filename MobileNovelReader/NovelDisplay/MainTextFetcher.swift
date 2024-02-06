@@ -41,6 +41,8 @@ class MainTextFetcher: ObservableObject {
         let (data, response) = try await URLSession.shared.data(for: URLRequest(url: url))
         guard (response as? HTTPURLResponse)?.statusCode == 200 else{ throw FetchError.badRequest }
         
-        return try JSONDecoder().decode(MainText.self, from: data)
+        let jsonDecoder = JSONDecoder()
+        jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
+        return try jsonDecoder.decode(MainText.self, from: data)
     }
 }

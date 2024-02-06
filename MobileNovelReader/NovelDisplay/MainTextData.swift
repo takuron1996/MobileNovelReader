@@ -7,8 +7,8 @@
 
 struct MainText: Codable {
     var title: String
-    var sub_title: String
-    var main_text: [String]
+    var subTitle: String
+    var mainText: [String]
     var prev: Bool
     var next: Bool
 }
