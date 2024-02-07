@@ -28,13 +28,7 @@ class MainTextFetcher: ObservableObject {
             }
         }
         
-        var components = URLComponents(string: urlString)
-        components?.queryItems = [
-            URLQueryItem(name: "ncode", value: ncode),
-            URLQueryItem(name: "episode", value: String(episode))
-        ]
-        
-        guard let url = components?.url else{
+        guard let url = ApiEndpoint.mainText(ncode: ncode, episode: episode).url else{
             throw FetchError.badURL
         }
         
