@@ -9,7 +9,7 @@ import SwiftUI
 
 // TODO 一旦モーダルビュー用に用意
 struct EpisodeModalView: View {
-    var fetcher: MainTextFetcher
+    var fetcher: Fetcher
     var ncode: String
     var episode: Int
     @State private var showFullScreenModal = false
@@ -25,7 +25,7 @@ struct EpisodeModalView: View {
 }
 
 struct ContentView: View {
-    private var fetcher = MainTextFetcher()
+    private var fetcher = Fetcher()
     
     var body: some View {
         //TODO 一旦目次の代わりに使用

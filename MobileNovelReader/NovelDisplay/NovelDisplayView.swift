@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct NovelDisplayView: View {
-    @EnvironmentObject var fetcher: MainTextFetcher
+    @EnvironmentObject var fetcher: Fetcher
     var ncode: String
     @State var episode: Int
     @State var mainTextData: MainText?
@@ -100,7 +100,10 @@ struct NovelDisplayView: View {
     
     private func fetchData() {
         Task {
-            mainTextData = try? await fetcher.fetchData(ncode: ncode, episode: episode)
+            guard let url = ApiEndpoint.mainText(ncode: ncode, episode: episode).url else{
+                throw FetchError.badURL
+            }
+            mainTextData = try? await fetcher.fetchData(url: url)
         }
     }
     
@@ -108,5 +111,5 @@ struct NovelDisplayView: View {
 
 #Preview {
     NovelDisplayView(ncode: "n0902ip", episode: 2)
-        .environmentObject(MainTextFetcher())
+        .environmentObject(Fetcher())
 }
