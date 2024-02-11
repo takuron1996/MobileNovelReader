@@ -22,9 +22,8 @@ struct NovelInfoSummaryView: View {
                 Button(action: {
                     isExpanded.toggle()
                 }) {
-                    Text(isExpanded ? "折り畳む" : "すべて表示").padding(.all, 8)
-                        .background(Color.blue)
-                        .foregroundColor(Color.white)
+                    Text(isExpanded ? "折り畳む" : "すべて表示").padding(.all, 2)
+                        .foregroundColor(Color.blue)
                         .cornerRadius(10)
                 }
             }
