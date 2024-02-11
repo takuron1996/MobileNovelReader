@@ -7,19 +7,16 @@
 
 import SwiftUI
 
-// TODO 一旦モーダルビュー用に用意
-struct EpisodeModalView: View {
-    var fetcher: Fetcher
-    var ncode: String
-    var episode: Int
-    @State private var showFullScreenModal = false
-    
+struct TmpMyPageView: View {
+    private var fetcher = Fetcher()
     var body: some View {
-        Button("第\(episode)話") {
-            self.showFullScreenModal = true
-        }
-        .fullScreenCover(isPresented: $showFullScreenModal) {
-            NovelDisplayView(ncode: ncode, episode: episode).environmentObject(fetcher)
+        NavigationStack{
+            NavigationLink(destination: NovelInfoView(ncode: "n0902ip").environmentObject(fetcher)) {
+                Text("n0902ip")
+            }
+            NavigationLink(destination: NovelInfoView(ncode: "n5957in").environmentObject(fetcher)) {
+                Text("n5957in")
+            }
         }
     }
 }
@@ -28,15 +25,11 @@ struct ContentView: View {
     private var fetcher = Fetcher()
     
     var body: some View {
-        //TODO 一旦目次の代わりに使用
-        VStack {
-            EpisodeModalView(fetcher: fetcher, ncode: "n0902ip", episode: 1)
-            EpisodeModalView(fetcher: fetcher, ncode: "n0902ip", episode: 2)
-            EpisodeModalView(fetcher: fetcher, ncode: "n0902ip", episode: 3)
-        }
+        //TODO 出来上がっていないページの代用
+        Text("出来上がっていないページの代用")
     }
 }
 
 #Preview {
-    ContentView()
+    TmpMyPageView()
 }
