@@ -11,17 +11,17 @@ struct TmpMyPageView: View {
     private var fetcher = Fetcher()
     var body: some View {
         NavigationStack{
-            NavigationLink(destination: NovelInfoView(ncode: "n0902ip").environmentObject(fetcher)) {
+            NavigationLink(destination: ContentsView(ncode: "n0902ip").environmentObject(fetcher)) {
                 Text("n0902ip")
             }
-            NavigationLink(destination: NovelInfoView(ncode: "n5957in").environmentObject(fetcher)) {
+            NavigationLink(destination: ContentsView(ncode: "n5957in").environmentObject(fetcher)) {
                 Text("n5957in")
             }
         }
     }
 }
 
-struct ContentView: View {
+struct TmpView: View {
     private var fetcher = Fetcher()
     
     var body: some View {

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct NovelInfoView: View {
+struct ContentsView: View {
     @EnvironmentObject var fetcher: Fetcher
     let ncode: String
     @State var novelInfoData: NovelInfo?
@@ -20,7 +20,7 @@ struct NovelInfoView: View {
                     .progressViewStyle(CircularProgressViewStyle(tint: .blue))
                     .frame(minWidth:0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
             }else if let novelInfoData{
-                NovelInfoDetailView(ncode: ncode,novelInfo: novelInfoData)
+                ContentsDetailView(ncode: ncode,novelInfo: novelInfoData)
             }else{
                 Text("データが取得できませんでした。")
                     .font(.title)
@@ -41,5 +41,5 @@ struct NovelInfoView: View {
 }
 
 #Preview {
-    NovelInfoView(ncode: "n0902ip").environmentObject(Fetcher())
+    ContentsView(ncode: "n0902ip").environmentObject(Fetcher())
 }

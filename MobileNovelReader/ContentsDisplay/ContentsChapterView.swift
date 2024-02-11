@@ -7,8 +7,9 @@
 
 import SwiftUI
 
-struct NovelInfoChapterView: View {
+struct ContentsChapterView: View {
     var ncode: String
+    var readEpisode: Int
     var chapters: [Chapter]
     var episodeNumbers: [[Int]]
     
@@ -23,7 +24,7 @@ struct NovelInfoChapterView: View {
                     Divider().background(Color.black)
                 }
                 ForEach(Array(zip(chapter.subTitles, episodes)), id: \.1){ (subTitle, episode) in
-                    NovelInfoSubTitleView(ncode: ncode, episode: episode, subTitle:subTitle).environmentObject(Fetcher())
+                    ContentsSubTitleView(ncode: ncode, episode: episode,readEpisode:readEpisode, subTitle:subTitle).environmentObject(Fetcher())
                     Divider().background(Color.black)
                 }
             }
@@ -32,7 +33,7 @@ struct NovelInfoChapterView: View {
 }
 
 #Preview {
-    NovelInfoChapterView(ncode: "n0902ip", chapters: ([
+    ContentsChapterView(ncode: "n0902ip", readEpisode: 2, chapters: ([
         Chapter(chapterTitle: "序章", subTitles: ["1話", "2話", "3話"]),
         Chapter(chapterTitle: "第一章", subTitles: ["1話", "2話"])
     ]), episodeNumbers: [[1, 2, 3], [4, 5]])

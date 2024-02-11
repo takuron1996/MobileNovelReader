@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct NovelInfoTagView: View {
+struct ContentsTagView: View {
     var tags: [String]
     var containerWidth: CGFloat
     var body: some View {
@@ -53,7 +53,7 @@ struct NovelInfoTagView: View {
 
 #Preview {
     GeometryReader { geometry in
-        NovelInfoTagView(tags: ["タグ１", "タグ２", "タグ３","タグ4", "タグ5", "タグ6","タグ7", "タグ8", "タグ9"], containerWidth: geometry.size.width)
+        ContentsTagView(tags: ["タグ１", "タグ２", "タグ３","タグ4", "タグ5", "タグ6","タグ7", "タグ8", "タグ9"], containerWidth: geometry.size.width)
     }
     
 }

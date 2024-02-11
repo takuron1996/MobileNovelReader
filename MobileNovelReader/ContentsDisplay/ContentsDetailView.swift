@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct NovelInfoDetailView: View {
+struct ContentsDetailView: View {
     var ncode: String
     var novelInfo: NovelInfo
     
@@ -21,7 +21,7 @@ struct NovelInfoDetailView: View {
                         .frame(minWidth:0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity,alignment: .leading)
                         .padding(.leading)
                     //TODO 作者ページを後で作成
-                    NavigationLink(destination: ContentView()) {
+                    NavigationLink(destination: TmpView()) {
                         Text(novelInfo.author)
                             .frame(minWidth:0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity,alignment: .leading)
                             .padding(.leading)
@@ -31,9 +31,9 @@ struct NovelInfoDetailView: View {
                         .lineLimit(nil)
                         .fixedSize(horizontal: false, vertical: true)
                         .padding(.top)
-                    NovelInfoTagView(tags: novelInfo.tag, containerWidth: geometry.size.width).padding(.bottom)
+                    ContentsTagView(tags: novelInfo.tag, containerWidth: geometry.size.width).padding(.bottom)
                     Divider().background(Color.black)
-                    NovelInfoSummaryView(summary: novelInfo.summary).padding(.vertical, 3)
+                    ContentsSummaryView(summary: novelInfo.summary).padding(.vertical, 3)
                     Divider().background(Color.black)
                     HStack{
                         Spacer()
@@ -43,7 +43,7 @@ struct NovelInfoDetailView: View {
                     }.padding(.all,5)
                     Divider().background(Color.black)
                     let episodeNumbers = generateEpisodeNumbers(for: novelInfo.chapters)
-                    NovelInfoChapterView(ncode: ncode, chapters: novelInfo.chapters, episodeNumbers: episodeNumbers)
+                    ContentsChapterView(ncode: ncode, readEpisode: novelInfo.readEpisode,chapters: novelInfo.chapters, episodeNumbers: episodeNumbers)
                     Spacer()
                 }
             }
@@ -95,7 +95,7 @@ extension NovelInfo {
             category: "大ジャンル",
             subCategory: "ジャンル",
             updatedAt: "2023-04-10",
-            readEpisode: 5,
+            readEpisode: 2,
             chapters: [
                 Chapter(chapterTitle: "序章", subTitles: ["１話", "２話"]),
                 Chapter(chapterTitle: "第一章", subTitles: ["３話", "４話"])
@@ -105,5 +105,5 @@ extension NovelInfo {
 }
 
 #Preview {
-    NovelInfoDetailView(ncode: "n0902ip",novelInfo: NovelInfo.sampleData)
+    ContentsDetailView(ncode: "n0902ip",novelInfo: NovelInfo.sampleData)
 }
