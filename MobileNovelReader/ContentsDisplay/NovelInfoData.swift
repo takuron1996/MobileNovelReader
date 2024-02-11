@@ -5,14 +5,21 @@
 //  Created by 池上拓 on 2024/02/07.
 //
 
-import SwiftUI
-
-struct NovelInfoData: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
+struct NovelInfo: Codable {
+    let title: String
+    let author: String
+    let episodeCount: Int
+    let releaseDate: String
+    let tag: [String]
+    let summary: String
+    let category: String
+    let subCategory: String
+    let updatedAt: String
+    let readEpisode: Int
+    let chapters: [Chapter]
 }
 
-#Preview {
-    NovelInfoData()
+struct Chapter: Codable {
+    let chapterTitle: String
+    let subTitles: [String]
 }
