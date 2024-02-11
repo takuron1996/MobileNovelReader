@@ -19,7 +19,7 @@ struct NovelInfo: Codable {
     let chapters: [Chapter]
 }
 
-struct Chapter: Codable {
+struct Chapter: Codable, Hashable {
     let chapterTitle: String
     let subTitles: [String]
 }
