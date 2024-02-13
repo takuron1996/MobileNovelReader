@@ -21,6 +21,9 @@ struct ContentsView: View {
                     .frame(minWidth:0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
             }else if let novelInfoData{
                 ContentsDetailView(ncode: ncode,novelInfo: novelInfoData)
+                Divider().background(Color.black)
+                ContentsFooterView(ncode: ncode, readEpisode: novelInfoData.readEpisode)
+                    .padding(.top, 10)
             }else{
                 Text("データが取得できませんでした。")
                     .font(.title)
