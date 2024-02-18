@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentsFooterView: View {
     var ncode: String
     var readEpisode: Int
+    var isFollow: Bool
     @State private var showFullScreenModal = false
     @Environment(\.presentationMode) var presentationMode
     var body: some View {
@@ -28,18 +29,30 @@ struct ContentsFooterView: View {
                 createButton(text: "続きから読む", episode: readEpisode)
             }
             //TODO: フォロー機能は未作成
-            Text("作成中")
-                .frame(minWidth: 0, maxWidth: 100, alignment: .center)
-                .padding(.all, 12)
-                .font(.footnote)
-                .background(Color.white)
-                .foregroundColor(Color.black)
-                .cornerRadius(30)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 30)
-                        .stroke(Color.black, lineWidth: 1)
-                )
-                .padding(.leading, 10)
+            if(isFollow){
+                Text("フォロー")
+                    .frame(minWidth: 0, maxWidth: 100, alignment: .center)
+                    .padding(.all, 12)
+                    .font(.footnote)
+                    .background(Color.white)
+                    .foregroundColor(Color.black)
+                    .cornerRadius(30)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 30)
+                            .stroke(Color.black, lineWidth: 1)
+                    )
+                    .padding(.leading, 10)
+            }else{
+                Text("フォロー中")
+                    .frame(minWidth: 0, maxWidth: 100, alignment: .center)
+                    .padding(.all, 12)
+                    .font(.footnote)
+                    .background(Color.gray)
+                    .foregroundColor(Color.white)
+                    .cornerRadius(30)
+                    .padding(.leading, 10)
+            }
+            
         }
     }
     
@@ -63,7 +76,7 @@ struct ContentsFooterView: View {
 
 #Preview {
     VStack{
-        ContentsFooterView(ncode: "n0902ip", readEpisode: 2)
-        ContentsFooterView(ncode: "n0902ip", readEpisode: 0)
+        ContentsFooterView(ncode: "n0902ip", readEpisode: 2, isFollow: true)
+        ContentsFooterView(ncode: "n0902ip", readEpisode: 0, isFollow: false)
     }
 }

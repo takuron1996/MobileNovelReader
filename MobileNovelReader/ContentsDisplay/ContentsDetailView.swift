@@ -99,7 +99,8 @@ extension NovelInfo {
             chapters: [
                 Chapter(chapterTitle: "序章", subTitles: ["１話", "２話"]),
                 Chapter(chapterTitle: "第一章", subTitles: ["３話", "４話"])
-            ]
+            ],
+            isFollow: true
         )
     }
 }

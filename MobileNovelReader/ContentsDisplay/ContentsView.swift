@@ -22,7 +22,7 @@ struct ContentsView: View {
             }else if let novelInfoData{
                 ContentsDetailView(ncode: ncode,novelInfo: novelInfoData)
                 Divider().background(Color.black)
-                ContentsFooterView(ncode: ncode, readEpisode: novelInfoData.readEpisode)
+                ContentsFooterView(ncode: ncode, readEpisode: novelInfoData.readEpisode, isFollow: novelInfoData.isFollow)
                     .padding(.top, 10)
             }else{
                 Text("データが取得できませんでした。")

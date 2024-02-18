@@ -17,6 +17,7 @@ struct NovelInfo: Codable {
     let updatedAt: String
     let readEpisode: Int
     let chapters: [Chapter]
+    let isFollow: Bool
 }
 
 struct Chapter: Codable, Hashable {
