@@ -11,7 +11,8 @@ import SwiftUI
 struct MobileNovelReaderApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            //TODO: 後で実装
+            TmpMyPageView()
         }
     }
 }

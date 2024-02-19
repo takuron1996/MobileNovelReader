@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct NovelDisplayView: View {
-    @EnvironmentObject var fetcher: MainTextFetcher
+    @EnvironmentObject var fetcher: Fetcher
     var ncode: String
     @State var episode: Int
     @State var mainTextData: MainText?
@@ -46,12 +46,12 @@ struct NovelDisplayView: View {
                         .frame(minWidth:0, maxWidth: .infinity, minHeight: 0, maxHeight: 30, alignment: .center)
                         .minimumScaleFactor(0.2)
                         .padding(.top, 40)
-                    Text(mainTextData.sub_title)
+                    Text(mainTextData.subTitle)
                         .font(.title)
                         .frame(minWidth:0, maxWidth: .infinity, minHeight: 0, maxHeight: 50, alignment: .center)
                         .minimumScaleFactor(0.2)
                         .padding(.bottom, 20)
-                    Text(mainTextData.main_text.joined(separator: "\n"))
+                    Text(mainTextData.mainText.joined(separator: "\n"))
                         .frame(minWidth:0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity,alignment: .leading)
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -100,7 +100,10 @@ struct NovelDisplayView: View {
     
     private func fetchData() {
         Task {
-            mainTextData = try? await fetcher.fetchData(ncode: ncode, episode: episode)
+            guard let url = ApiEndpoint.mainText(ncode: ncode, episode: episode).url else{
+                throw FetchError.badURL
+            }
+            mainTextData = try? await fetcher.fetchData(url: url)
         }
     }
     
@@ -108,5 +111,5 @@ struct NovelDisplayView: View {
 
 #Preview {
     NovelDisplayView(ncode: "n0902ip", episode: 2)
-        .environmentObject(MainTextFetcher())
+        .environmentObject(Fetcher())
 }

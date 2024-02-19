@@ -21,7 +21,7 @@ struct NovelDisplayMenuView: View {
                 }
                 isEpisodeEdit = false
             }
-
+            
             createButton(condition: data.next, title: "次の話"){
                 if isEpisodeEdit{
                     episode += 1
@@ -34,16 +34,18 @@ struct NovelDisplayMenuView: View {
     private func createButton(condition: Bool, title: String,action: @escaping () -> Void) -> some View {
         Group {
             if condition {
-                Button(title, action: action)
-                    .padding()
-                    .frame(minWidth: 0,maxWidth: .infinity)
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color.blue, lineWidth: 1)
-                    )
+                Button(action: action){
+                    Text(title)
+                        .frame(minWidth: 0, maxWidth: .infinity)
+                }
+                .padding()
+                .background(Color.blue)
+                .foregroundColor(.white)
+                .cornerRadius(10)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(Color.blue, lineWidth: 1)
+                )
             } else {
                 Image(systemName: "xmark")
                     .padding()
@@ -64,7 +66,7 @@ struct NovelDisplayMenuView: View {
     NavigationStack {
         NovelDisplayMenuView(
             episode: .constant(1),
-            data: MainText(title: "title", sub_title: "text", main_text: ["a", "", "b"], prev: true, next: false)
+            data: MainText(title: "title", subTitle: "text", mainText: ["a", "", "b"], prev: true, next: false)
         )
     }
 }
