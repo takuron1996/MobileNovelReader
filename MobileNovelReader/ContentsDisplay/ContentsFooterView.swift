@@ -8,10 +8,13 @@
 import SwiftUI
 
 struct ContentsFooterView: View {
+    var fetcher: Fetcher
     var ncode: String
     var readEpisode: Int
-    var isFollow: Bool
+    @State var isFollow: Bool
     @State private var showFullScreenModal = false
+    @State private var PostFollowData: FollowData?
+    @State private var DeleteFollowData: FollowData?
     @Environment(\.presentationMode) var presentationMode
     var body: some View {
         HStack{
@@ -20,7 +23,7 @@ struct ContentsFooterView: View {
                     self.presentationMode.wrappedValue.dismiss()
                 }) {
                     Image(systemName: "chevron.left")
-                    .foregroundColor(.blue)
+                        .foregroundColor(.blue)
                 }.padding(.leading, -10)
             }
             if readEpisode == 0{
@@ -28,31 +31,53 @@ struct ContentsFooterView: View {
             }else{
                 createButton(text: "続きから読む", episode: readEpisode)
             }
-            //TODO: フォロー機能は未作成
-            if(isFollow){
-                Text("フォロー")
-                    .frame(minWidth: 0, maxWidth: 100, alignment: .center)
-                    .padding(.all, 12)
-                    .font(.footnote)
-                    .background(Color.white)
-                    .foregroundColor(Color.black)
-                    .cornerRadius(30)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 30)
-                            .stroke(Color.black, lineWidth: 1)
-                    )
-                    .padding(.leading, 10)
+            if isFollow{
+                Button(action: {
+                    Task{
+                        guard let request = ApiEndpoint.follow(method: .POST, ncode: ncode).request else{
+                            throw FetchError.badURL
+                        }
+                        PostFollowData = try? await fetcher.fetchData(request: request)
+                    }
+                    if let PostFollowData{
+                        isFollow = !PostFollowData.isSuccess
+                    }
+                }){
+                    Text("フォロー")
+                        .frame(minWidth: 0, maxWidth: 100, alignment: .center)
+                        .padding(.all, 12)
+                        .font(.footnote)
+                        .background(Color.white)
+                        .foregroundColor(Color.black)
+                        .cornerRadius(30)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 30)
+                                .stroke(Color.black, lineWidth: 1)
+                        )
+                }
+                .padding(.leading, 10)
             }else{
-                Text("フォロー中")
-                    .frame(minWidth: 0, maxWidth: 100, alignment: .center)
-                    .padding(.all, 12)
-                    .font(.footnote)
-                    .background(Color.gray)
-                    .foregroundColor(Color.white)
-                    .cornerRadius(30)
-                    .padding(.leading, 10)
+                Button(action:{
+                    Task{
+                        guard let request = ApiEndpoint.follow(method: .DELETE, ncode: ncode).request else{
+                            throw FetchError.badURL
+                        }
+                        DeleteFollowData = try? await fetcher.fetchData(request: request)
+                    }
+                    if let DeleteFollowData{
+                        isFollow = DeleteFollowData.isSuccess
+                    }
+                }){
+                    Text("フォロー中")
+                        .frame(minWidth: 0, maxWidth: 100, alignment: .center)
+                        .padding(.all, 12)
+                        .font(.footnote)
+                        .background(Color.gray)
+                        .foregroundColor(Color.white)
+                        .cornerRadius(30)
+                }
+                .padding(.leading, 10)
             }
-            
         }
     }
     
@@ -76,7 +101,7 @@ struct ContentsFooterView: View {
 
 #Preview {
     VStack{
-        ContentsFooterView(ncode: "n0902ip", readEpisode: 2, isFollow: true)
-        ContentsFooterView(ncode: "n0902ip", readEpisode: 0, isFollow: false)
+        ContentsFooterView(fetcher: Fetcher(),ncode: "n0902ip", readEpisode: 2, isFollow: true)
+        ContentsFooterView(fetcher: Fetcher(),ncode: "n0902ip", readEpisode: 0, isFollow: false)
     }
 }

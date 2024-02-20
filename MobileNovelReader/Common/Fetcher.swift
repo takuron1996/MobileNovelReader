@@ -10,7 +10,7 @@ import SwiftUI
 class Fetcher: ObservableObject {
     @Published var isLoading = false
     
-    func fetchData<T: Codable>(url: URL) async throws -> T? {
+    func fetchData<T: Codable>(request: URLRequest) async throws -> T? {
         Task { @MainActor in
             isLoading = true
         }
@@ -21,7 +21,7 @@ class Fetcher: ObservableObject {
             }
         }
         
-        let (data, response) = try await URLSession.shared.data(for: URLRequest(url: url))
+        let (data, response) = try await URLSession.shared.data(for: request)
         guard (response as? HTTPURLResponse)?.statusCode == 200 else{ throw FetchError.badRequest }
         
         let jsonDecoder = JSONDecoder()

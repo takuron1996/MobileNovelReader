@@ -22,7 +22,7 @@ struct ContentsView: View {
             }else if let novelInfoData{
                 ContentsDetailView(ncode: ncode,novelInfo: novelInfoData)
                 Divider().background(Color.black)
-                ContentsFooterView(ncode: ncode, readEpisode: novelInfoData.readEpisode, isFollow: novelInfoData.isFollow)
+                ContentsFooterView(fetcher: Fetcher(),ncode: ncode, readEpisode: novelInfoData.readEpisode, isFollow: novelInfoData.isFollow)
                     .padding(.top, 10)
             }else{
                 Text("データが取得できませんでした。")
@@ -34,10 +34,10 @@ struct ContentsView: View {
             }
         }.task{
             Task{
-                guard let url = ApiEndpoint.novelInfo(ncode: ncode).url else{
+                guard let request = ApiEndpoint.novelInfo(ncode: ncode).request else{
                     throw FetchError.badURL
                 }
-                novelInfoData = try? await fetcher.fetchData(url: url)
+                novelInfoData = try? await fetcher.fetchData(request: request)
             }
         }
     }

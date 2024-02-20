@@ -100,10 +100,10 @@ struct NovelDisplayView: View {
     
     private func fetchData() {
         Task {
-            guard let url = ApiEndpoint.mainText(ncode: ncode, episode: episode).url else{
+            guard let request = ApiEndpoint.mainText(ncode: ncode, episode: episode).request else{
                 throw FetchError.badURL
             }
-            mainTextData = try? await fetcher.fetchData(url: url)
+            mainTextData = try? await fetcher.fetchData(request: request)
         }
     }
     
