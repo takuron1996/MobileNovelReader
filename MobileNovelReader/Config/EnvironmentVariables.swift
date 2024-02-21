@@ -17,9 +17,11 @@ struct Config {
 
 /// アプリケーション設定のグローバルインスタンス。
 ///
-/// このインスタンスは、アプリケーションの起動時に`Info.plist`からAPIの基本URLを読み込み、
-/// `Config`構造体のインスタンスを生成します。APIのURLが`Info.plist`に存在しない場合、
-/// アプリケーションはエラーを発生させて終了します。
+/// このインスタンスはアプリケーションの起動時に`Info.plist`からAPIの基本URLを読み込みます。
+/// APIのURLはアプリケーションの基本的な動作に不可欠であるため、このURLが`Info.plist`に存在しない場合、
+/// アプリケーションは`fatalError`を発生させて直ちに終了します。これにより、誤ってAPIのURLが設定されていない
+/// 状態でアプリケーションが動作することを防ぎます。この挙動はクリティカルな依存関係を持つアプリケーション設定に
+/// 必要なエラーハンドリングとして設計されています。
 let config: Config = {
     guard let api_url = Bundle.main.object(forInfoDictionaryKey: "API_URL") as? String else {
         fatalError("API_URLはInfo.plistで設定する必要があります。")
