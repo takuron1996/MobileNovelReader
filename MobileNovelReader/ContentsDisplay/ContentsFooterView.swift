@@ -7,17 +7,30 @@
 
 import SwiftUI
 
+/// 小説のフッタービューで、読み始めるボタンやフォローボタンを表示します。
+///
+/// このビューは、ユーザーが小説の特定のエピソードから読み始めることができるボタン、
+/// および小説をフォロー/フォロー解除するためのボタンを提供します。
 struct ContentsFooterView: View {
+    /// データフェッチ処理を管理するオブジェクト。
     var fetcher: Fetcher
+    /// 小説の識別コード。
     var ncode: String
+    /// 現在読んでいるエピソード番号。
     var readEpisode: Int
+    /// 小説がフォローされているかどうかを示す状態。
     @State var isFollow: Bool
+    /// モーダルビューを表示するかどうかを制御する状態。
     @State private var showFullScreenModal = false
+    /// POSTフォローデータの状態。
     @State private var PostFollowData: FollowData?
+    /// DELETEフォローデータの状態。
     @State private var DeleteFollowData: FollowData?
+    /// プレゼンテーションモードの環境変数。
     @Environment(\.presentationMode) var presentationMode
     var body: some View {
         HStack{
+            // 「戻る」ボタンの表示
             if presentationMode.wrappedValue.isPresented {
                 Button(action: {
                     self.presentationMode.wrappedValue.dismiss()
@@ -26,11 +39,13 @@ struct ContentsFooterView: View {
                         .foregroundColor(.blue)
                 }.padding(.leading, -10)
             }
+            // 「読み始める」または「続きから読む」ボタン
             if readEpisode == 0{
                 createButton(text: "1話目から読む", episode: 1)
             }else{
                 createButton(text: "続きから読む", episode: readEpisode)
             }
+            // 「フォローする」または「フォロー中」ボタン
             if isFollow{
                 Button(action: {
                     Task{
@@ -81,7 +96,13 @@ struct ContentsFooterView: View {
         }
     }
     
-    func createButton(text: String, episode:Int) -> some View{
+    /// 指定されたテキストとエピソード番号でボタンを生成します。
+    ///
+    /// - Parameters:
+    ///   - text: ボタンに表示するテキスト。
+    ///   - episode: 関連するエピソード番号。
+    /// - Returns: 指定された設定で生成されたボタン。
+    private func createButton(text: String, episode:Int) -> some View{
         return Button(action:{self.showFullScreenModal = true}) {
             Text(text)
                 .frame(minWidth:0, maxWidth: 100,alignment: .center)

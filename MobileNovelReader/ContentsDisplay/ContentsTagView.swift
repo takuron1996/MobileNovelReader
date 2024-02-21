@@ -7,8 +7,14 @@
 
 import SwiftUI
 
+/// タグをフローレイアウトで表示するビュー。
+///
+/// このビューは、指定されたタグのリストをフローレイアウトで表示します。
+/// 各タグは背景色付きのラベルとして表示され、コンテナの幅に応じて適切に折り返されます。
 struct ContentsTagView: View {
+    /// 表示するタグの配列。
     var tags: [String]
+    /// タグを表示するコンテナの幅。
     var containerWidth: CGFloat
     var body: some View {
         var width = CGFloat.zero
@@ -41,7 +47,11 @@ struct ContentsTagView: View {
         }
     }
     
-    func item(for text: String) -> some View {
+    /// タグのテキストを元に、表示用のビューを生成します。
+    ///
+    /// - Parameter text: 表示するタグのテキスト。
+    /// - Returns: テキストを含むタグ表示用のビュー。
+    private func item(for text: String) -> some View {
         Text(text)
             .padding(.all, 5)
             .font(.footnote)

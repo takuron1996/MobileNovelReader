@@ -8,9 +8,17 @@
 
 import SwiftUI
 
+/// 小説の要約を表示し、展開/折り畳み機能を提供するビュー。
+///
+/// このビューは、指定された要約テキストを最初の3行で表示し、
+/// 「すべて表示」ボタンをタップすることで全文を展開することができます。
+/// 再度タップすると要約は折り畳まれます。
 struct ContentsSummaryView: View {
+    /// 表示する要約テキスト。
     var summary: String
+    /// 要約テキストが展開されているかどうかを示す状態。
     @State private var isExpanded = false
+    /// 要約テキストの現在の高さ。
     @State private var textHeight: CGFloat = .zero
     var body: some View {
         VStack{

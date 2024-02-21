@@ -7,15 +7,30 @@
 
 import SwiftUI
 
+/// 特定の小説エピソードのサブタイトルを表示し、タップ時に詳細画面を表示するビュー。
+///
+/// このビューは、指定されたエピソードのサブタイトルを表示し、
+/// それをタップすることで該当エピソードの詳細画面に遷移します。
+/// 現在読んでいるエピソードの場合は、青い円でマークされます。
 struct ContentsSubTitleView: View {
+    /// 小説の識別コード。
     var ncode: String
+    
+    /// 表示するエピソード番号。
     var episode: Int
+    
+    /// 現在読んでいるエピソード番号。
     var readEpisode: Int
+    
+    /// エピソードのサブタイトル。
     var subTitle: String
+    
+    /// フルスクリーンモーダルビューを表示するかどうかを制御する状態変数。
     @State private var showFullScreenModal = false
     
     var body: some View {
         ZStack(alignment: .trailing) {
+            // エピソードのサブタイトルを表示するボタン
             Button(action:{self.showFullScreenModal = true}) {
                 Text(subTitle)
                     .font(.subheadline)
@@ -27,6 +42,7 @@ struct ContentsSubTitleView: View {
                 NovelDisplayView(ncode: ncode, episode: episode).environmentObject(Fetcher())
             }
             .padding(.leading, 10)
+            // 現在のエピソードに青いマーカーを表示
             if episode == readEpisode{
                 Circle()
                     .fill(Color.blue)

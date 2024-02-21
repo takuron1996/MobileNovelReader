@@ -7,14 +7,23 @@
 
 import SwiftUI
 
+/// 小説のエピソードナビゲーション用のメニュービュー。
+///
+/// このビューは、指定されたエピソードの「前の話」と「次の話」へのナビゲーションボタンを提供します。
+/// 各ボタンは、エピソードが存在する場合にのみ表示され、タップすることでエピソード番号を更新します。
 struct NovelDisplayMenuView: View {
+    /// 現在表示しているエピソード番号。
     @Binding var episode: Int
+    
+    /// 表示しているエピソードのデータ。
     var data: MainText
-    // ボタン連打対策
+    
+    /// ボタンの連打による誤操作を防ぐためのフラグ。
     @State var isEpisodeEdit = true
     
     var body: some View {
         HStack {
+            // 「前の話」ボタンの生成
             createButton(condition: data.prev, title: "前の話"){
                 if isEpisodeEdit {
                     episode -= 1
@@ -22,6 +31,7 @@ struct NovelDisplayMenuView: View {
                 isEpisodeEdit = false
             }
             
+            // 「次の話」ボタンの生成
             createButton(condition: data.next, title: "次の話"){
                 if isEpisodeEdit{
                     episode += 1
@@ -31,6 +41,13 @@ struct NovelDisplayMenuView: View {
         }
     }
     
+    /// 特定の条件に基づいてボタンを生成するヘルパーメソッド。
+    ///
+    /// - Parameters:
+    ///   - condition: ボタンが有効であるかどうかを示すブール値。
+    ///   - title: ボタンに表示するテキスト。
+    ///   - action: ボタンがタップされたときに実行されるアクション。
+    /// - Returns: 生成されたボタン。
     private func createButton(condition: Bool, title: String,action: @escaping () -> Void) -> some View {
         Group {
             if condition {
