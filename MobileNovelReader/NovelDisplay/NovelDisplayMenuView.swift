@@ -19,24 +19,24 @@ struct NovelDisplayMenuView: View {
     var data: MainText
     
     /// ボタンの連打による誤操作を防ぐためのフラグ。
-    @State var isEpisodeEdit = true
+    @State private var isButtonEnabled = true
     
     var body: some View {
         HStack {
             // 「前の話」ボタンの生成
             createButton(condition: data.prev, title: "前の話"){
-                if isEpisodeEdit {
+                if isButtonEnabled {
                     episode -= 1
                 }
-                isEpisodeEdit = false
+                isButtonEnabled = false
             }
             
             // 「次の話」ボタンの生成
             createButton(condition: data.next, title: "次の話"){
-                if isEpisodeEdit{
+                if isButtonEnabled{
                     episode += 1
                 }
-                isEpisodeEdit = false
+                isButtonEnabled = false
             }
         }
     }
