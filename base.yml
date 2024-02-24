@@ -16,3 +16,29 @@ targets:
       path: MobileNovelReader.xcodeproj/App.entitlements
       properties:
         com.apple.security.application-groups: group.com.app
+  MobileNovelReaderTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources: [MobileNovelReaderTests]
+    dependencies:
+      - target: MobileNovelReader
+    info:
+      path: MobileNovelReaderTests.xcodeproj/Info.plist
+    scheme:
+      testTargets: [MobileNovelReaderTests]
+      gatherCoverageData: true
+      coverageTargets:
+        - MobileNovelReader
+  MobileNovelReaderUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources: [MobileNovelReaderUITests]
+    dependencies:
+      - target: MobileNovelReader
+    info:
+      path: MobileNovelReaderUITests.xcodeproj/Info.plist
+    scheme:
+      testTargets: [MobileNovelReaderTests]
+      gatherCoverageData: true
+      coverageTargets:
+        - MobileNovelReader

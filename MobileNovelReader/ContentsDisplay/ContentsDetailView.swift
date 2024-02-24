@@ -7,8 +7,15 @@
 
 import SwiftUI
 
+/// 小説の詳細情報を表示するビュー。
+///
+/// このビューは、指定された小説のタイトル、作者、カテゴリ、サブカテゴリ、
+/// タグ、要約、エピソード数、公開日、最終更新日を表示します。
+/// また、各章のサブタイトルと対応するエピソード番号も表示されます。
 struct ContentsDetailView: View {
+    /// 小説の識別コード。
     var ncode: String
+    /// 表示する小説の情報。
     var novelInfo: NovelInfo
     
     var body: some View {
@@ -51,20 +58,24 @@ struct ContentsDetailView: View {
         }
     }
     
+    /// 小説の公開日をフォーマットするプロパティ
     var releaseDate: String{
         return novelInfo.releaseDate.replacingOccurrences(of: "-", with: "/")
     }
     
+    /// 小説の公開日をフォーマットするプロパティ
     var updateAt:String {
         return novelInfo.updatedAt.replacingOccurrences(of: "-", with: "/")
     }
     
+    /// 指定したテキストをフォーマットして表示するヘルパーメソッド
     func createText(text: String) -> Text {
         return Text(text)
             .foregroundColor(Color.gray)
             .font(.system(size: 14))
     }
     
+    /// 各章のエピソード番号を生成するヘルパーメソッド
     func generateEpisodeNumbers(for chapters: [Chapter]) -> [[Int]] {
         var episodeNumbers: [[Int]] = []
         var currentEpisode = 1

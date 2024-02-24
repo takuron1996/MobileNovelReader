@@ -7,10 +7,18 @@
 
 import SwiftUI
 
+/// 小説の各章とサブタイトルを表示するビュー。
+///
+/// このビューは、指定された小説の各章とそれに関連するサブタイトルをリスト形式で表示します。
+/// 各サブタイトルはタップ可能で、関連するエピソードの詳細ビューに遷移します。
 struct ContentsChapterView: View {
+    /// 小説の識別コード。
     var ncode: String
+    /// 現在読んでいるエピソード番号。
     var readEpisode: Int
+    /// 表示する小説の章の配列。
     var chapters: [Chapter]
+    /// 各章のサブタイトルに対応するエピソード番号の配列。
     var episodeNumbers: [[Int]]
     
     var body: some View {

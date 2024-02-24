@@ -7,12 +7,29 @@
 
 import SwiftUI
 
+/// 小説の特定エピソードの表示ビュー。
+///
+/// このビューは、選択された小説の特定のエピソードを表示します。
+/// ビューには、エピソードのタイトル、サブタイトル、および本文が含まれます。
+/// ユーザーはタップジェスチャーで追加のナビゲーションオプションを表示/非表示にできます。
 struct NovelDisplayView: View {
+    
+    /// データフェッチを管理する環境オブジェクト。
     @EnvironmentObject var fetcher: Fetcher
+    
+    /// 小説の識別コード。
     var ncode: String
+    
+    /// 表示するエピソードの番号。
     @State var episode: Int
+    
+    /// フェッチされた小説のエピソードデータ。
     @State var mainTextData: MainText?
+    
+    /// プレゼンテーションモードの環境変数。
     @Environment(\.presentationMode) var presentationMode
+    
+    /// タップジェスチャーの状態。
     @State private var isTapped = true
     
     var body: some View {
@@ -89,6 +106,7 @@ struct NovelDisplayView: View {
         .gesture(tapGesture)
     }
     
+    /// タップジェスチャーの定義。
     private var tapGesture: some Gesture {
         TapGesture()
             .onEnded {
@@ -98,12 +116,13 @@ struct NovelDisplayView: View {
             }
     }
     
+    /// 指定されたエピソードのデータをフェッチするメソッド。
     private func fetchData() {
         Task {
-            guard let url = ApiEndpoint.mainText(ncode: ncode, episode: episode).url else{
+            guard let request = ApiEndpoint.mainText(ncode: ncode, episode: episode).request else{
                 throw FetchError.badURL
             }
-            mainTextData = try? await fetcher.fetchData(url: url)
+            mainTextData = try? await fetcher.fetchData(request: request)
         }
     }
     
