@@ -12,9 +12,12 @@ import Foundation
 /// この構造体は、APIの基本URLなど、アプリケーション全体で共有される設定情報を保持します。
 struct Config {
     /// APIの基本URL。
-    let api_url: String
+    let apiUrl: String
+    
+    let apiKey: String
 }
 
+//TODO: コメント修正（apiKey）
 /// アプリケーション設定のグローバルインスタンス。
 ///
 /// このインスタンスはアプリケーションの起動時に`Info.plist`からAPIの基本URLを読み込みます。
@@ -23,8 +26,11 @@ struct Config {
 /// 状態でアプリケーションが動作することを防ぎます。この挙動はクリティカルな依存関係を持つアプリケーション設定に
 /// 必要なエラーハンドリングとして設計されています。
 let config: Config = {
-    guard let api_url = Bundle.main.object(forInfoDictionaryKey: "API_URL") as? String else {
+    guard let apiUrl = Bundle.main.object(forInfoDictionaryKey: "API_URL") as? String else {
         fatalError("API_URLはInfo.plistで設定する必要があります。")
     }
-    return Config(api_url: api_url)
+    guard let apiKey = Bundle.main.object(forInfoDictionaryKey: "API_KEY") as? String else {
+        fatalError("API_KeyはInfo.plistで設定する必要があります。")
+    }
+    return Config(apiUrl: apiUrl, apiKey: apiKey)
 }()

@@ -1,9 +1,13 @@
 include:
   - base.yml
+# Local環境以外では埋め込まないこと（セキュリティ）
+# 
 settings:
   API_URL: http://localhost:8080
+  API_KEY: lmVSHi1u6b
 targets:
   MobileNovelReader:
     info:
       properties:
         API_URL: ${API_URL}
+        API_KEY: ${API_KEY}
