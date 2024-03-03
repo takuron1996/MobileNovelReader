@@ -55,8 +55,8 @@ struct ContentsSubTitleView: View {
 
 #Preview {
     VStack{
-        ContentsSubTitleView(ncode: "n0902ip", episode: 1, readEpisode:2, subTitle: "1話")
-        ContentsSubTitleView(ncode: "n0902ip", episode: 2, readEpisode:2, subTitle: "2話")
-        ContentsSubTitleView(ncode: "n0902ip", episode: 3, readEpisode:2, subTitle: "3話")
+        ContentsSubTitleView(ncode: "n9636x", episode: 1, readEpisode:2, subTitle: "1話")
+        ContentsSubTitleView(ncode: "n9636x", episode: 2, readEpisode:2, subTitle: "2話")
+        ContentsSubTitleView(ncode: "n9636x", episode: 3, readEpisode:2, subTitle: "3話")
     }
 }

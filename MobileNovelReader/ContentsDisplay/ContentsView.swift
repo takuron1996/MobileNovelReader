@@ -48,7 +48,7 @@ struct ContentsView: View {
             // ビューが表示される際に小説のデータを非同期でフェッチ
             Task{
                 guard let request = ApiEndpoint.novelInfo(ncode: ncode).request else{
-                    throw FetchError.badURL
+                    throw FetchError.badRequest
                 }
                 novelInfoData = try? await fetcher.fetchData(request: request)
             }
@@ -57,5 +57,5 @@ struct ContentsView: View {
 }
 
 #Preview {
-    ContentsView(ncode: "n0902ip").environmentObject(Fetcher())
+    ContentsView(ncode: "n9636x").environmentObject(Fetcher())
 }

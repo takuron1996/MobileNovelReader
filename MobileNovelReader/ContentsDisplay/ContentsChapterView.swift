@@ -41,7 +41,7 @@ struct ContentsChapterView: View {
 }
 
 #Preview {
-    ContentsChapterView(ncode: "n0902ip", readEpisode: 2, chapters: ([
+    ContentsChapterView(ncode: "n9636x", readEpisode: 2, chapters: ([
         Chapter(chapterTitle: "序章", subTitles: ["1話", "2話", "3話"]),
         Chapter(chapterTitle: "第一章", subTitles: ["1話", "2話"])
     ]), episodeNumbers: [[1, 2, 3], [4, 5]])

@@ -117,5 +117,5 @@ extension NovelInfo {
 }
 
 #Preview {
-    ContentsDetailView(ncode: "n0902ip",novelInfo: NovelInfo.sampleData)
+    ContentsDetailView(ncode: "n9636x",novelInfo: NovelInfo.sampleData)
 }

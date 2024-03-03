@@ -120,7 +120,7 @@ struct NovelDisplayView: View {
     private func fetchData() {
         Task {
             guard let request = ApiEndpoint.mainText(ncode: ncode, episode: episode).request else{
-                throw FetchError.badURL
+                throw FetchError.badRequest
             }
             mainTextData = try? await fetcher.fetchData(request: request)
         }
@@ -129,6 +129,6 @@ struct NovelDisplayView: View {
 }
 
 #Preview {
-    NovelDisplayView(ncode: "n0902ip", episode: 2)
+    NovelDisplayView(ncode: "n9636x", episode: 2)
         .environmentObject(Fetcher())
 }

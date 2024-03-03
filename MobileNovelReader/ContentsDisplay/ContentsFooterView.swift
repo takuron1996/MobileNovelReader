@@ -50,7 +50,7 @@ struct ContentsFooterView: View {
                 Button(action: {
                     Task{
                         guard let request = ApiEndpoint.follow(method: .POST, ncode: ncode).request else{
-                            throw FetchError.badURL
+                            throw FetchError.badRequest
                         }
                         PostFollowData = try? await fetcher.fetchData(request: request)
                     }
@@ -75,7 +75,7 @@ struct ContentsFooterView: View {
                 Button(action:{
                     Task{
                         guard let request = ApiEndpoint.follow(method: .DELETE, ncode: ncode).request else{
-                            throw FetchError.badURL
+                            throw FetchError.badRequest
                         }
                         DeleteFollowData = try? await fetcher.fetchData(request: request)
                     }
@@ -122,7 +122,7 @@ struct ContentsFooterView: View {
 
 #Preview {
     VStack{
-        ContentsFooterView(fetcher: Fetcher(),ncode: "n0902ip", readEpisode: 2, isFollow: true)
-        ContentsFooterView(fetcher: Fetcher(),ncode: "n0902ip", readEpisode: 0, isFollow: false)
+        ContentsFooterView(fetcher: Fetcher(),ncode: "n9636x", readEpisode: 2, isFollow: true)
+        ContentsFooterView(fetcher: Fetcher(),ncode: "n9636x", readEpisode: 0, isFollow: false)
     }
 }
