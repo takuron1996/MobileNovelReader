@@ -7,8 +7,6 @@
 
 import Foundation
 
-
-
 /// HTTPメソッドを表す列挙型。
 ///
 /// この列挙型は、HTTPリクエストで使用される標準的なメソッドを定義します。
@@ -54,10 +52,14 @@ enum ApiEndpoint{
     ///   - ncode: ノベルのコード。
     case follow(method: HttpMethod, ncode: String)
     
+    case token(tokenBody: TokenBodyProtocol)
+    
     /// エンドポイントに対応するURLRequestを生成します。
     /// URLRequestが生成できない場合はnilを返します。
     var request: URLRequest? {
-        let base_url = "\(config.api_url)/api"
+        let base_url = "\(config.apiUrl)/api"
+        let jsonEncoder = JSONEncoder()
+        jsonEncoder.keyEncodingStrategy = .convertToSnakeCase
         
         switch self {
         case .mainText(let ncode, let episode):
@@ -83,7 +85,13 @@ enum ApiEndpoint{
             var request = URLRequest(url: URL(string: base_url + "/follow")!)
             request.httpMethod = method.rawValue
             request.addValue("application/json", forHTTPHeaderField: "content-type")
-            request.httpBody = try? JSONEncoder().encode(FollowBody(ncode: ncode))
+            request.httpBody = try? jsonEncoder.encode(FollowBody(ncode: ncode))
+            return request
+        case .token(let tokenBody):
+            var request = URLRequest(url: URL(string: base_url + "/token")!)
+            request.httpMethod = HttpMethod.POST.rawValue
+            request.addValue("application/json", forHTTPHeaderField: "content-type")
+            request.httpBody = try? jsonEncoder.encode(tokenBody)
             return request
         }
     }
