@@ -94,3 +94,8 @@ func setTokenKeyChain(tokenData: TokenData) throws{
         }
     }
 }
+
+func deleteTokenKeyChain() {
+    _ = KeyChainManager.shared.delete(account: KeyChainTokenData.accessToken.rawValue)
+    _ = KeyChainManager.shared.delete(account: KeyChainTokenData.refreshToken.rawValue)
+}
