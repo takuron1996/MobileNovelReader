@@ -81,8 +81,7 @@ class Fetcher: ObservableObject {
         do{
             refresh_data = try await self.access(request: refresh_request)
         }catch{
-            _ = KeyChainManager.shared.delete(account: KeyChainTokenData.accessToken.rawValue)
-            _ = KeyChainManager.shared.delete(account: KeyChainTokenData.refreshToken.rawValue)
+            deleteTokenKeyChain()
             throw error
         }
         
