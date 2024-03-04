@@ -8,6 +8,13 @@
 import Foundation
  
 class AppState: ObservableObject {
-    @Published var isLogin = false
+    @Published var isLogin: Bool
+    init(){
+        if KeyChainManager.shared.read(account: KeyChainTokenData.accessToken.rawValue) != nil {
+            isLogin = true
+        }else{
+            isLogin = false
+        }
+    }
 }
  
