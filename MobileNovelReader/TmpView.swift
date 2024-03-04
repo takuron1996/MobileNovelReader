@@ -14,7 +14,9 @@ struct TmpTopPageView: View{
     var body: some View{
         //TODO: トップページの代用
         if appState.isLogin {
-            TmpMyPageView().environmentObject(fetcher)
+            TmpMyPageView()
+                .environmentObject(fetcher)
+                .environmentObject(appState)
         }else{
             LoginDisplayView(appState: appState, fetcher: fetcher)
         }
@@ -22,6 +24,8 @@ struct TmpTopPageView: View{
 }
 
 struct TmpMyPageView: View {
+    @EnvironmentObject var appState: AppState
+    
     var body: some View {
         //TODO: 出来上がっていないマイページの代用
         NavigationStack{
@@ -33,17 +37,44 @@ struct TmpMyPageView: View {
                     Text("n5957in")
                 }.navigationTitle("マイページ")
                     .toolbarTitleDisplayMode(.inline)
+                //TODO: 暫定ログアウト処理
+                Button(action: {
+                    deleteTokenKeyChain()
+                    appState.isLogin = false
+                }){
+                    Text("Logout")
+                        .padding(.vertical, 10)
+                        .font(.headline)
+                        .frame(width: 300)
+                        .background(Color.blue.opacity(0.8))
+                        .foregroundColor(Color.white)
+                        .cornerRadius(30)
+                }
             }
         }
     }
 }
 
-struct TmpView: View {
-    private var fetcher = Fetcher()
+struct TmpAuthorView: View {
     
     var body: some View {
         //TODO: 出来上がっていない作者ページの代用
         Text("出来上がっていない作者ページの代用")
+    }
+}
+
+struct TmpSignUpView: View {
+    
+    var body: some View {
+        //TODO: 出来上がっていないユーザー登録ページの代用
+        Text("出来上がっていないユーザー登録ページの代用")
+    }
+}
+
+struct TmpForgotPasswordView: View {
+    var body: some View{
+        //TODO: 出来上がっていないパスワード忘れページの代用
+        Text("出来上がっていないパスワード忘れページの代用")
     }
 }
 

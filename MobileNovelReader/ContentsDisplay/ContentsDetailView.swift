@@ -28,7 +28,7 @@ struct ContentsDetailView: View {
                         .frame(minWidth:0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity,alignment: .leading)
                         .padding(.leading)
                     //TODO: 作者ページを後で作成
-                    NavigationLink(destination: TmpView()) {
+                    NavigationLink(destination: TmpAuthorView()) {
                         Text(novelInfo.author)
                             .frame(minWidth:0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity,alignment: .leading)
                             .padding(.leading)
