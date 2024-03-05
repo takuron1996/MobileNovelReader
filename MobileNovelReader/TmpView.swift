@@ -9,16 +9,21 @@ import SwiftUI
 
 struct TmpTopPageView: View{
     @ObservedObject var appState = AppState()
-    private let fetcher = Fetcher()
     
     var body: some View{
         //TODO: トップページの代用
         if appState.isLogin {
             TmpMyPageView()
-                .environmentObject(fetcher)
+                .environmentObject(Fetcher(delegate: appState))
                 .environmentObject(appState)
+                .alert(isPresented: $appState.showAlert) {
+                    Alert(title: Text("ログインの有効期限切れ"), message: Text("再度ログインしてください"), dismissButton: .default(Text("OK")){
+                        appState.showAlert = false
+                        appState.isLogin = false
+                    })
+                }
         }else{
-            LoginDisplayView(appState: appState, fetcher: fetcher)
+            LoginDisplayView(appState: appState, fetcher: Fetcher(delegate: appState))
         }
     }
 }

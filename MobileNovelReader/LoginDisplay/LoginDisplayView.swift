@@ -79,7 +79,7 @@ struct LoginDisplayView: View {
             guard let request = ApiEndpoint.token(tokenBody: passwordTokenBody).request else{
                 throw FetchError.badRequest
             }
-            let tokenData: TokenData? = try? await Fetcher().fetchData(request: request)
+            let tokenData: TokenData? = try? await fetcher.fetchData(request: request)
             if let tokenData {
                 try setTokenKeyChain(tokenData: tokenData)
                 appState.isLogin = true
@@ -120,6 +120,15 @@ struct LoginDisplayView: View {
     
 }
 
-#Preview {
-    LoginDisplayView(appState: AppState(), fetcher: Fetcher())
+//#Preview {
+//    var appState = AppState()
+//    LoginDisplayView(appState: appState, fetcher: Fetcher(delegate: appState))
+//}
+
+struct LoginDisplayView_Previews: PreviewProvider {
+    static var previews: some View {
+        let appState = AppState()
+        let fetcher = Fetcher(delegate: appState)
+        LoginDisplayView(appState: appState, fetcher: fetcher)
+    }
 }

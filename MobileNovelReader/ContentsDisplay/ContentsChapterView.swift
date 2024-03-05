@@ -12,6 +12,7 @@ import SwiftUI
 /// このビューは、指定された小説の各章とそれに関連するサブタイトルをリスト形式で表示します。
 /// 各サブタイトルはタップ可能で、関連するエピソードの詳細ビューに遷移します。
 struct ContentsChapterView: View {
+    @EnvironmentObject var appState: AppState
     /// 小説の識別コード。
     var ncode: String
     /// 現在読んでいるエピソード番号。
@@ -32,7 +33,7 @@ struct ContentsChapterView: View {
                     Divider().background(Color.black)
                 }
                 ForEach(Array(zip(chapter.subTitles, episodes)), id: \.1){ (subTitle, episode) in
-                    ContentsSubTitleView(ncode: ncode, episode: episode,readEpisode:readEpisode, subTitle:subTitle).environmentObject(Fetcher())
+                    ContentsSubTitleView(ncode: ncode, episode: episode,readEpisode:readEpisode, subTitle:subTitle).environmentObject(Fetcher(delegate: appState))
                     Divider().background(Color.black)
                 }
             }

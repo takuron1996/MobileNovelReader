@@ -12,6 +12,7 @@ import SwiftUI
 /// このビューは、ユーザーが小説の特定のエピソードから読み始めることができるボタン、
 /// および小説をフォロー/フォロー解除するためのボタンを提供します。
 struct ContentsFooterView: View {
+    @EnvironmentObject var appState: AppState
     /// データフェッチ処理を管理するオブジェクト。
     var fetcher: Fetcher
     /// 小説の識別コード。
@@ -114,7 +115,7 @@ struct ContentsFooterView: View {
                 .cornerRadius(30)
         }
         .fullScreenCover(isPresented: $showFullScreenModal) {
-            NovelDisplayView(ncode: ncode, episode: episode).environmentObject(Fetcher())
+            NovelDisplayView(ncode: ncode, episode: episode).environmentObject(Fetcher(delegate: appState))
         }
         .padding(.leading, 10)
     }
@@ -122,7 +123,7 @@ struct ContentsFooterView: View {
 
 #Preview {
     VStack{
-        ContentsFooterView(fetcher: Fetcher(),ncode: "n9636x", readEpisode: 2, isFollow: true)
-        ContentsFooterView(fetcher: Fetcher(),ncode: "n9636x", readEpisode: 0, isFollow: false)
+        ContentsFooterView(fetcher: Fetcher(delegate: AppState()),ncode: "n9636x", readEpisode: 2, isFollow: true)
+        ContentsFooterView(fetcher: Fetcher(delegate: AppState()),ncode: "n9636x", readEpisode: 0, isFollow: false)
     }
 }

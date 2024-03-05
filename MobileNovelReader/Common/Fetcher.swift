@@ -15,6 +15,12 @@ class Fetcher: ObservableObject {
     /// リクエスト中であるかどうかを示すフラグ。
     @Published var isLoading = false
     
+    weak var delegate: FetcherDelegate?
+    
+    init(delegate: FetcherDelegate){
+        self.delegate = delegate
+    }
+    
     /// 指定されたURLリクエストを実行し、結果をデコードします。
     ///
     /// - Parameters:
@@ -69,10 +75,12 @@ class Fetcher: ObservableObject {
         // リフレッシュトークンでのトークン取得
         let refreshToken = KeyChainManager.shared.read(account: KeyChainTokenData.refreshToken.rawValue)
         if refreshToken == nil {
+            delegate?.dataFetchFailed()
             throw KeyChainError.FailureRead
         }
         let refreshTokenBody = RefreshTokenBody(refreshToken: refreshToken!)
         guard let refresh_request = ApiEndpoint.token(tokenBody: refreshTokenBody).request else{
+            delegate?.dataFetchFailed()
             throw FetchError.badRequest
         }
         
@@ -82,6 +90,7 @@ class Fetcher: ObservableObject {
             refresh_data = try await self.access(request: refresh_request)
         }catch{
             deleteTokenKeyChain()
+            delegate?.dataFetchFailed()
             throw error
         }
         
@@ -103,4 +112,9 @@ enum FetchError: Error {
     case badRequest
     /// 無効なURL
     case badURL
+}
+
+protocol FetcherDelegate: AnyObject {
+    func dataFetchedSuccessfully(data: Data)
+    func dataFetchFailed()
 }

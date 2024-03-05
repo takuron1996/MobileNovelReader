@@ -130,5 +130,5 @@ struct NovelDisplayView: View {
 
 #Preview {
     NovelDisplayView(ncode: "n9636x", episode: 2)
-        .environmentObject(Fetcher())
+        .environmentObject(Fetcher(delegate: AppState()))
 }
