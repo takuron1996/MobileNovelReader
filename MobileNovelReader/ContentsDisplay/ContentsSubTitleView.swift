@@ -13,6 +13,7 @@ import SwiftUI
 /// それをタップすることで該当エピソードの詳細画面に遷移します。
 /// 現在読んでいるエピソードの場合は、青い円でマークされます。
 struct ContentsSubTitleView: View {
+    @EnvironmentObject var appState: AppState
     /// 小説の識別コード。
     var ncode: String
     
@@ -39,7 +40,7 @@ struct ContentsSubTitleView: View {
                     .contentShape(Rectangle())
             }
             .fullScreenCover(isPresented: $showFullScreenModal) {
-                NovelDisplayView(ncode: ncode, episode: episode).environmentObject(Fetcher())
+                NovelDisplayView(ncode: ncode, episode: episode).environmentObject(Fetcher(delegate: appState))
             }
             .padding(.leading, 10)
             // 現在のエピソードに青いマーカーを表示
@@ -55,8 +56,8 @@ struct ContentsSubTitleView: View {
 
 #Preview {
     VStack{
-        ContentsSubTitleView(ncode: "n0902ip", episode: 1, readEpisode:2, subTitle: "1話")
-        ContentsSubTitleView(ncode: "n0902ip", episode: 2, readEpisode:2, subTitle: "2話")
-        ContentsSubTitleView(ncode: "n0902ip", episode: 3, readEpisode:2, subTitle: "3話")
+        ContentsSubTitleView(ncode: "n9636x", episode: 1, readEpisode:2, subTitle: "1話")
+        ContentsSubTitleView(ncode: "n9636x", episode: 2, readEpisode:2, subTitle: "2話")
+        ContentsSubTitleView(ncode: "n9636x", episode: 3, readEpisode:2, subTitle: "3話")
     }
 }

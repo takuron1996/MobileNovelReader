@@ -14,6 +14,7 @@ import SwiftUI
 /// 小説のデータは非同期的にフェッチされ、データの読み込み中は進捗インジケータが表示されます。
 /// データの取得に失敗した場合は、エラーメッセージが表示されます。
 struct ContentsView: View {
+    @EnvironmentObject var appState: AppState
     /// データフェッチ処理を管理するオブジェクト。
     @EnvironmentObject var fetcher: Fetcher
     /// 表示対象の小説の識別コード。
@@ -33,7 +34,7 @@ struct ContentsView: View {
                 // データが存在する場合、詳細ビューとフッタービューを表示
                 ContentsDetailView(ncode: ncode,novelInfo: novelInfoData)
                 Divider().background(Color.black)
-                ContentsFooterView(fetcher: Fetcher(),ncode: ncode, readEpisode: novelInfoData.readEpisode, isFollow: novelInfoData.isFollow)
+                ContentsFooterView(fetcher: Fetcher(delegate: appState),ncode: ncode, readEpisode: novelInfoData.readEpisode, isFollow: novelInfoData.isFollow)
                     .padding(.top, 10)
             }else{
                 // データが取得できなかった場合、エラーメッセージを表示
@@ -48,7 +49,7 @@ struct ContentsView: View {
             // ビューが表示される際に小説のデータを非同期でフェッチ
             Task{
                 guard let request = ApiEndpoint.novelInfo(ncode: ncode).request else{
-                    throw FetchError.badURL
+                    throw FetchError.badRequest
                 }
                 novelInfoData = try? await fetcher.fetchData(request: request)
             }
@@ -57,5 +58,5 @@ struct ContentsView: View {
 }
 
 #Preview {
-    ContentsView(ncode: "n0902ip").environmentObject(Fetcher())
+    ContentsView(ncode: "n9636x").environmentObject(Fetcher(delegate: AppState()))
 }
