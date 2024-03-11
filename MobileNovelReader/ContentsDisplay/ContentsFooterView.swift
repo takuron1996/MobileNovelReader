@@ -54,10 +54,11 @@ struct ContentsFooterView: View {
                             throw FetchError.badRequest
                         }
                         PostFollowData = try? await fetcher.fetchData(request: request)
+                        if let PostFollowData{
+                            isFollow = !PostFollowData.isSuccess
+                        }
                     }
-                    if let PostFollowData{
-                        isFollow = !PostFollowData.isSuccess
-                    }
+                    
                 }){
                     Text("フォロー")
                         .frame(minWidth: 0, maxWidth: 100, alignment: .center)
@@ -79,9 +80,9 @@ struct ContentsFooterView: View {
                             throw FetchError.badRequest
                         }
                         DeleteFollowData = try? await fetcher.fetchData(request: request)
-                    }
-                    if let DeleteFollowData{
-                        isFollow = DeleteFollowData.isSuccess
+                        if let DeleteFollowData{
+                            isFollow = DeleteFollowData.isSuccess
+                        }
                     }
                 }){
                     Text("フォロー中")
