@@ -117,5 +117,5 @@ extension NovelInfo {
 }
 
 #Preview {
-    ContentsDetailView(ncode: "n9636x",novelInfo: NovelInfo.sampleData)
+    ContentsDetailView(ncode: "n9636x",novelInfo: NovelInfo.sampleData).environmentObject(Fetcher(delegate: AppState())).environmentObject(AppState())
 }
