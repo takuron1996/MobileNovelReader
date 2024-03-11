@@ -28,7 +28,6 @@ func createSignature(method: HttpMethod, url: URL, now: Date = Date()) -> String
     // 署名の計算
     let key = SymmetricKey(data: Data(config.apiKey.utf8))
     let signature = HMAC<SHA256>.authenticationCode(for: Data(signatureString), using: key)
-    print(signature.map { String(format: "%02x", $0) }.joined())
     return signature.map { String(format: "%02x", $0) }.joined()
 
 }
