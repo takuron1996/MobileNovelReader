@@ -119,7 +119,7 @@ struct NovelDisplayView: View {
     /// 指定されたエピソードのデータをフェッチするメソッド。
     private func fetchData() {
         Task {
-            guard let request = ApiEndpoint.mainText(ncode: ncode, episode: episode).request else{
+            guard let request = ApiRequest(endpoint: MainTextEndpoint(ncode: ncode, episode: episode)).request else{
                 throw FetchError.badRequest
             }
             mainTextData = try? await fetcher.fetchData(request: request)

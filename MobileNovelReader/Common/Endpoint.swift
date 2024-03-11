@@ -7,6 +7,39 @@
 
 import Foundation
 
+protocol Endpoint{
+    var url_string: String{ get }
+    var urlQueryItems: [URLQueryItem]?{ get }
+    var httpBody: Codable? { get }
+    var httpMethod: HttpMethod{ get }
+}
+
+struct ApiRequest{
+    var endpoint: Endpoint
+    var request: URLRequest?{
+        let jsonEncoder = JSONEncoder()
+        jsonEncoder.keyEncodingStrategy = .convertToSnakeCase
+        var components = URLComponents(string: endpoint.url_string)
+        if let urlQueryItems = endpoint.urlQueryItems{
+            components?.queryItems = urlQueryItems
+        }
+        guard let url = components?.url else{
+            return nil
+        }
+        var request = URLRequest(url: url)
+        request.addValue("application/json", forHTTPHeaderField: "content-type")
+        guard let signature = createSignature(method: endpoint.httpMethod, url: url) else {
+            return nil
+        }
+        request.addValue(signature, forHTTPHeaderField: "Signature")
+        request.httpMethod = endpoint.httpMethod.rawValue
+        if let httpBody = endpoint.httpBody{
+            request.httpBody = try? jsonEncoder.encode(httpBody)
+        }
+        return request
+    }
+}
+
 /// HTTPメソッドを表す列挙型。
 ///
 /// この列挙型は、HTTPリクエストで使用される標準的なメソッドを定義します。
@@ -32,68 +65,3 @@ enum HttpMethod: String {
     /// サーバー上のリソースを削除するために使用されます。
     case DELETE
 }
-
-/// APIエンドポイントを表す列挙型。
-///
-/// この列挙型は、アプリケーションで使用する様々なAPIエンドポイントを定義します。
-/// 各ケースは、特定のAPIリクエストとそのパラメータを表します。
-enum ApiEndpoint{
-    /// 特定のエピソードのメインテキストを取得するためのエンドポイント。
-    /// - Parameters:
-    ///   - ncode: ノベルのコード。
-    ///   - episode: エピソード番号。
-    case mainText(ncode: String, episode: Int)
-    /// 特定のノベルの情報を取得するためのエンドポイント。
-    /// - Parameter ncode: ノベルのコード。
-    case novelInfo(ncode: String)
-    /// ユーザーのフォロー状態を管理するためのエンドポイント。
-    /// - Parameters:
-    ///   - method: HTTPメソッド（POST、DELETE）。
-    ///   - ncode: ノベルのコード。
-    case follow(method: HttpMethod, ncode: String)
-    
-    case token(tokenBody: TokenBodyProtocol)
-    
-    /// エンドポイントに対応するURLRequestを生成します。
-    /// URLRequestが生成できない場合はnilを返します。
-    var request: URLRequest? {
-        let base_url = "\(config.apiUrl)/api"
-        let jsonEncoder = JSONEncoder()
-        jsonEncoder.keyEncodingStrategy = .convertToSnakeCase
-        
-        switch self {
-        case .mainText(let ncode, let episode):
-            var components = URLComponents(string: base_url + "/maintext")
-            components?.queryItems = [
-                URLQueryItem(name: "ncode", value: ncode),
-                URLQueryItem(name: "episode", value: String(episode))
-            ]
-            guard let url = components?.url else{
-                return nil
-            }
-            return URLRequest(url: url)
-        case .novelInfo(let ncode):
-            var components = URLComponents(string: base_url + "/novelinfo")
-            components?.queryItems = [
-                URLQueryItem(name: "ncode", value: ncode),
-            ]
-            guard let url = components?.url else{
-                return nil
-            }
-            return URLRequest(url: url)
-        case .follow(let method, let ncode):
-            var request = URLRequest(url: URL(string: base_url + "/follow")!)
-            request.httpMethod = method.rawValue
-            request.addValue("application/json", forHTTPHeaderField: "content-type")
-            request.httpBody = try? jsonEncoder.encode(FollowBody(ncode: ncode))
-            return request
-        case .token(let tokenBody):
-            var request = URLRequest(url: URL(string: base_url + "/token")!)
-            request.httpMethod = HttpMethod.POST.rawValue
-            request.addValue("application/json", forHTTPHeaderField: "content-type")
-            request.httpBody = try? jsonEncoder.encode(tokenBody)
-            return request
-        }
-    }
-}
-

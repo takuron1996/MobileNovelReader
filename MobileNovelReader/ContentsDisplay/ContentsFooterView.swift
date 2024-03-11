@@ -50,7 +50,7 @@ struct ContentsFooterView: View {
             if isFollow{
                 Button(action: {
                     Task{
-                        guard let request = ApiEndpoint.follow(method: .POST, ncode: ncode).request else{
+                        guard let request = ApiRequest(endpoint: FollowEndpoint(httpMethod: .POST, ncode: ncode)).request else{
                             throw FetchError.badRequest
                         }
                         PostFollowData = try? await fetcher.fetchData(request: request)
@@ -76,7 +76,7 @@ struct ContentsFooterView: View {
             }else{
                 Button(action:{
                     Task{
-                        guard let request = ApiEndpoint.follow(method: .DELETE, ncode: ncode).request else{
+                        guard let request = ApiRequest(endpoint: FollowEndpoint(httpMethod: .DELETE, ncode: ncode)).request else{
                             throw FetchError.badRequest
                         }
                         DeleteFollowData = try? await fetcher.fetchData(request: request)

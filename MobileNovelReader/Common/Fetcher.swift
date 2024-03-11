@@ -66,7 +66,7 @@ class Fetcher: ObservableObject {
             // トークンの有効期限切れ以外
             throw FetchError.badRequest
         }
-
+        
         let errorData = try jsonDecoder.decode(ErrorData.self, from: data)
         guard errorData.error == "invalid_token" else {
             throw FetchError.badRequest
@@ -79,7 +79,7 @@ class Fetcher: ObservableObject {
             throw KeyChainError.FailureRead
         }
         let refreshTokenBody = RefreshTokenBody(refreshToken: refreshToken!)
-        guard let refresh_request = ApiEndpoint.token(tokenBody: refreshTokenBody).request else{
+        guard let refresh_request = ApiRequest(endpoint: TokenEndpoint(tokenBody: refreshTokenBody)).request else{
             delegate?.dataFetchFailed()
             throw FetchError.badRequest
         }
