@@ -4,7 +4,7 @@ include:
 # 
 settings:
   API_URL: http://localhost:8080
-  API_KEY: lmVSHi1u6b
+  API_KEY: 1f765fc8-05b2-b4a4-b290-0416ede7e712
 targets:
   MobileNovelReader:
     info:
