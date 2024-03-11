@@ -48,6 +48,27 @@ struct ContentsFooterView: View {
             }
             // 「フォローする」または「フォロー中」ボタン
             if isFollow{
+                Button(action:{
+                    Task{
+                        guard let request = ApiRequest(endpoint: FollowEndpoint(httpMethod: .DELETE, ncode: ncode)).request else{
+                            throw FetchError.badRequest
+                        }
+                        DeleteFollowData = try? await fetcher.fetchData(request: request)
+                        if let DeleteFollowData{
+                            isFollow = !DeleteFollowData.isSuccess
+                        }
+                    }
+                }){
+                    Text("フォロー中")
+                        .frame(minWidth: 0, maxWidth: 100, alignment: .center)
+                        .padding(.all, 12)
+                        .font(.footnote)
+                        .background(Color.gray)
+                        .foregroundColor(Color.white)
+                        .cornerRadius(30)
+                }
+                .padding(.leading, 10)
+            }else{
                 Button(action: {
                     Task{
                         guard let request = ApiRequest(endpoint: FollowEndpoint(httpMethod: .POST, ncode: ncode)).request else{
@@ -55,7 +76,7 @@ struct ContentsFooterView: View {
                         }
                         PostFollowData = try? await fetcher.fetchData(request: request)
                         if let PostFollowData{
-                            isFollow = !PostFollowData.isSuccess
+                            isFollow = PostFollowData.isSuccess
                         }
                     }
                     
@@ -71,27 +92,6 @@ struct ContentsFooterView: View {
                             RoundedRectangle(cornerRadius: 30)
                                 .stroke(Color.black, lineWidth: 1)
                         )
-                }
-                .padding(.leading, 10)
-            }else{
-                Button(action:{
-                    Task{
-                        guard let request = ApiRequest(endpoint: FollowEndpoint(httpMethod: .DELETE, ncode: ncode)).request else{
-                            throw FetchError.badRequest
-                        }
-                        DeleteFollowData = try? await fetcher.fetchData(request: request)
-                        if let DeleteFollowData{
-                            isFollow = DeleteFollowData.isSuccess
-                        }
-                    }
-                }){
-                    Text("フォロー中")
-                        .frame(minWidth: 0, maxWidth: 100, alignment: .center)
-                        .padding(.all, 12)
-                        .font(.footnote)
-                        .background(Color.gray)
-                        .foregroundColor(Color.white)
-                        .cornerRadius(30)
                 }
                 .padding(.leading, 10)
             }
