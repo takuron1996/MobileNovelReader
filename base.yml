@@ -5,7 +5,7 @@ targets:
   MobileNovelReader:
     type: application
     platform: iOS
-    deploymentTarget: "17.2"
+    deploymentTarget: "17.4"
     sources: [MobileNovelReader]
     info:
       path: MobileNovelReader.xcodeproj/Info.plist
