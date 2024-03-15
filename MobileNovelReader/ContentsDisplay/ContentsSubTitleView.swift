@@ -1,5 +1,5 @@
 //
-//  NovelInfoSubTitleView.swift
+//  ContentsSubTitleView.swift
 //  MobileNovelReader
 //
 //  Created by 池上拓 on 2024/02/11.
@@ -16,27 +16,27 @@ struct ContentsSubTitleView: View {
     @EnvironmentObject var appState: AppState
     /// 小説の識別コード。
     var ncode: String
-    
+
     /// 表示するエピソード番号。
     var episode: Int
-    
+
     /// 現在読んでいるエピソード番号。
     var readEpisode: Int
-    
+
     /// エピソードのサブタイトル。
     var subTitle: String
-    
+
     /// フルスクリーンモーダルビューを表示するかどうかを制御する状態変数。
     @State private var showFullScreenModal = false
-    
+
     var body: some View {
         ZStack(alignment: .trailing) {
             // エピソードのサブタイトルを表示するボタン
-            Button(action:{self.showFullScreenModal = true}) {
+            Button(action: { self.showFullScreenModal = true }) {
                 Text(subTitle)
                     .font(.subheadline)
                     .foregroundColor(Color.black)
-                    .frame(minWidth:0, maxWidth: .infinity,alignment: .leading)
+                    .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
                     .contentShape(Rectangle())
             }
             .fullScreenCover(isPresented: $showFullScreenModal) {
@@ -44,7 +44,7 @@ struct ContentsSubTitleView: View {
             }
             .padding(.leading, 10)
             // 現在のエピソードに青いマーカーを表示
-            if episode == readEpisode{
+            if episode == readEpisode {
                 Circle()
                     .fill(Color.blue)
                     .frame(width: 15, height: 15)
@@ -55,9 +55,9 @@ struct ContentsSubTitleView: View {
 }
 
 #Preview {
-    VStack{
-        ContentsSubTitleView(ncode: "n9636x", episode: 1, readEpisode:2, subTitle: "1話")
-        ContentsSubTitleView(ncode: "n9636x", episode: 2, readEpisode:2, subTitle: "2話")
-        ContentsSubTitleView(ncode: "n9636x", episode: 3, readEpisode:2, subTitle: "3話")
+    VStack {
+        ContentsSubTitleView(ncode: "n9636x", episode: 1, readEpisode: 2, subTitle: "1話")
+        ContentsSubTitleView(ncode: "n9636x", episode: 2, readEpisode: 2, subTitle: "2話")
+        ContentsSubTitleView(ncode: "n9636x", episode: 3, readEpisode: 2, subTitle: "3話")
     }
 }

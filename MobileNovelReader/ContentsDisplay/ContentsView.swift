@@ -1,5 +1,5 @@
 //
-//  NovelInfoView.swift
+//  ContentsView.swift
 //  MobileNovelReader
 //
 //  Created by 池上拓 on 2024/02/07.
@@ -21,34 +21,38 @@ struct ContentsView: View {
     let ncode: String
     /// フェッチされた小説の情報。
     @State var novelInfoData: NovelInfo?
-    
+
     var body: some View {
         VStack {
             // データ読み込み中はプログレスビューを表示
-            if fetcher.isLoading{
+            if fetcher.isLoading {
                 ProgressView()
                     .scaleEffect(3)
                     .progressViewStyle(CircularProgressViewStyle(tint: .blue))
-                    .frame(minWidth:0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-            }else if let novelInfoData{
+                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+            } else if let novelInfoData {
                 // データが存在する場合、詳細ビューとフッタービューを表示
-                ContentsDetailView(ncode: ncode,novelInfo: novelInfoData)
+                ContentsDetailView(ncode: ncode, novelInfo: novelInfoData)
                 Divider().background(Color.black)
-                ContentsFooterView(fetcher: Fetcher(delegate: appState),ncode: ncode, readEpisode: novelInfoData.readEpisode, isFollow: novelInfoData.isFollow)
+                ContentsFooterView(
+                    fetcher: Fetcher(delegate: appState),
+                    ncode: ncode,
+                    readEpisode: novelInfoData.readEpisode,
+                    isFollow: novelInfoData.isFollow)
                     .padding(.top, 10)
-            }else{
+            } else {
                 // データが取得できなかった場合、エラーメッセージを表示
                 Text("データが取得できませんでした。")
                     .font(.title)
                     .fontWeight(.bold)
                     .lineLimit(1)
                     .minimumScaleFactor(0.8)
-                    .frame(minWidth:0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity,alignment: .center)
+                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
             }
-        }.task{
+        }.task {
             // ビューが表示される際に小説のデータを非同期でフェッチ
-            Task{
-                guard let request = ApiRequest(endpoint: NovelInfoEndpoint(ncode: ncode)).request else{
+            Task {
+                guard let request = ApiRequest(endpoint: NovelInfoEndpoint(ncode: ncode)).request else {
                     throw FetchError.badRequest
                 }
                 novelInfoData = try? await fetcher.fetchData(request: request)

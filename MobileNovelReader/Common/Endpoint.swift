@@ -7,23 +7,23 @@
 
 import Foundation
 
-protocol Endpoint{
-    var url_string: String{ get }
-    var urlQueryItems: [URLQueryItem]?{ get }
+protocol Endpoint {
+    var urlString: String { get }
+    var urlQueryItems: [URLQueryItem]? { get }
     var httpBody: Codable? { get }
-    var httpMethod: HttpMethod{ get }
+    var httpMethod: HttpMethod { get }
 }
 
-struct ApiRequest{
+struct ApiRequest {
     var endpoint: Endpoint
-    var request: URLRequest?{
+    var request: URLRequest? {
         let jsonEncoder = JSONEncoder()
         jsonEncoder.keyEncodingStrategy = .convertToSnakeCase
-        var components = URLComponents(string: endpoint.url_string)
-        if let urlQueryItems = endpoint.urlQueryItems{
+        var components = URLComponents(string: endpoint.urlString)
+        if let urlQueryItems = endpoint.urlQueryItems {
             components?.queryItems = urlQueryItems
         }
-        guard let url = components?.url else{
+        guard let url = components?.url else {
             return nil
         }
         var request = URLRequest(url: url)
@@ -33,7 +33,7 @@ struct ApiRequest{
         }
         request.addValue(signature, forHTTPHeaderField: "Signature")
         request.httpMethod = endpoint.httpMethod.rawValue
-        if let httpBody = endpoint.httpBody{
+        if let httpBody = endpoint.httpBody {
             request.httpBody = try? jsonEncoder.encode(httpBody)
         }
         return request
@@ -48,19 +48,19 @@ enum HttpMethod: String {
     /// HTTP GETメソッド。
     /// サーバーから情報を取得するために使用されます。
     case GET
-    
+
     /// HTTP POSTメソッド。
     /// サーバーにデータを送信し、新しいリソースを作成するために使用されます。
     case POST
-    
+
     /// HTTP PATCHメソッド。
     /// サーバー上の既存のリソースを部分的に更新するために使用されます。
     case PATCH
-    
+
     /// HTTP PUTメソッド。
     /// サーバー上の既存のリソースを更新または置き換えるために使用されます。
     case PUT
-    
+
     /// HTTP DELETEメソッド。
     /// サーバー上のリソースを削除するために使用されます。
     case DELETE

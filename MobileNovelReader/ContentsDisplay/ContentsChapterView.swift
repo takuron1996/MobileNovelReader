@@ -1,5 +1,5 @@
 //
-//  NovelInfoChapterView.swift
+//  ContentsChapterView.swift
 //  MobileNovelReader
 //
 //  Created by 池上拓 on 2024/02/11.
@@ -21,19 +21,24 @@ struct ContentsChapterView: View {
     var chapters: [Chapter]
     /// 各章のサブタイトルに対応するエピソード番号の配列。
     var episodeNumbers: [[Int]]
-    
+
     var body: some View {
-        VStack{
-            ForEach(Array(zip(chapters, episodeNumbers)), id: \.1) { (chapter, episodes) in
-                if !chapter.chapterTitle.isEmpty{
+        VStack {
+            ForEach(Array(zip(chapters, episodeNumbers)), id: \.1) { chapter, episodes in
+                if !chapter.chapterTitle.isEmpty {
                     Text(chapter.chapterTitle)
                         .font(.headline)
-                        .frame(minWidth:0, maxWidth: .infinity,alignment: .leading)
+                        .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
                         .padding(.leading, 10)
                     Divider().background(Color.black)
                 }
-                ForEach(Array(zip(chapter.subTitles, episodes)), id: \.1){ (subTitle, episode) in
-                    ContentsSubTitleView(ncode: ncode, episode: episode,readEpisode:readEpisode, subTitle:subTitle).environmentObject(Fetcher(delegate: appState))
+                ForEach(Array(zip(chapter.subTitles, episodes)), id: \.1) { subTitle, episode in
+                    ContentsSubTitleView(
+                        ncode: ncode,
+                        episode: episode,
+                        readEpisode: readEpisode,
+                        subTitle: subTitle)
+                    .environmentObject(Fetcher(delegate: appState))
                     Divider().background(Color.black)
                 }
             }
@@ -42,8 +47,20 @@ struct ContentsChapterView: View {
 }
 
 #Preview {
-    ContentsChapterView(ncode: "n9636x", readEpisode: 2, chapters: ([
-        Chapter(chapterTitle: "序章", subTitles: ["1話", "2話", "3話"]),
-        Chapter(chapterTitle: "第一章", subTitles: ["1話", "2話"])
-    ]), episodeNumbers: [[1, 2, 3], [4, 5]])
+    ContentsChapterView(
+        ncode: "n9636x",
+        readEpisode: 2,
+        chapters: [
+            Chapter(
+                chapterTitle: "序章",
+                subTitles: ["1話", "2話", "3話"]),
+            Chapter(
+                chapterTitle: "第一章",
+                subTitles: ["1話", "2話"])
+        ],
+        episodeNumbers: [
+            [1, 2, 3],
+            [4, 5]])
+    .environmentObject(Fetcher(delegate: AppState()))
+    .environmentObject(AppState())
 }

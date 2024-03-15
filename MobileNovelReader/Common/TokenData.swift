@@ -7,22 +7,22 @@
 
 import Foundation
 
-protocol TokenBodyProtocol: Codable{
+protocol TokenBodyProtocol: Codable {
     var grantType: String { get }
 }
 
-struct PasswordTokenBody: TokenBodyProtocol{
+struct PasswordTokenBody: TokenBodyProtocol {
     var grantType = "password"
     var id: String
     var password: String
 }
 
-struct RefreshTokenBody: TokenBodyProtocol{
+struct RefreshTokenBody: TokenBodyProtocol {
     var grantType = "refresh_token"
     var refreshToken: String
 }
 
-struct TokenData: Codable{
+struct TokenData: Codable {
     var accessToken: String
     var refreshToken: String
 }
