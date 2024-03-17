@@ -10,20 +10,20 @@ import Foundation
 class AppState: ObservableObject {
     @Published var isLogin: Bool
     @Published var showAlert: Bool = false
-    init(){
+    init() {
         if KeyChainManager.shared.read(account: KeyChainTokenData.accessToken.rawValue) != nil {
             isLogin = true
-        }else{
+        } else {
             isLogin = false
         }
     }
 }
 
-extension AppState: FetcherDelegate{
-    func dataFetchedSuccessfully(data: Data) {
+extension AppState: FetcherDelegate {
+    func dataFetchedSuccessfully(data _: Data) {
         // 成功時は必要なし
     }
-    
+
     func dataFetchFailed() {
         DispatchQueue.main.async {
             self.showAlert = true

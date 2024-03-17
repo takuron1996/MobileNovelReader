@@ -1,5 +1,5 @@
 //
-//  NovelDisplayNavView.swift
+//  NovelDisplayMenuView.swift
 //  MobileNovelReader
 //
 //  Created by 池上拓 on 2024/01/18.
@@ -14,33 +14,33 @@ import SwiftUI
 struct NovelDisplayMenuView: View {
     /// 現在表示しているエピソード番号。
     @Binding var episode: Int
-    
+
     /// 表示しているエピソードのデータ。
     var data: MainText
-    
+
     /// ボタンの連打による誤操作を防ぐためのフラグ。
     @State private var isButtonEnabled = true
-    
+
     var body: some View {
         HStack {
             // 「前の話」ボタンの生成
-            createButton(condition: data.prev, title: "前の話"){
+            createButton(condition: data.prev, title: "前の話") {
                 if isButtonEnabled {
                     episode -= 1
                 }
                 isButtonEnabled = false
             }
-            
+
             // 「次の話」ボタンの生成
-            createButton(condition: data.next, title: "次の話"){
-                if isButtonEnabled{
+            createButton(condition: data.next, title: "次の話") {
+                if isButtonEnabled {
                     episode += 1
                 }
                 isButtonEnabled = false
             }
         }
     }
-    
+
     /// 特定の条件に基づいてボタンを生成するヘルパーメソッド。
     ///
     /// - Parameters:
@@ -48,10 +48,10 @@ struct NovelDisplayMenuView: View {
     ///   - title: ボタンに表示するテキスト。
     ///   - action: ボタンがタップされたときに実行されるアクション。
     /// - Returns: 生成されたボタン。
-    private func createButton(condition: Bool, title: String,action: @escaping () -> Void) -> some View {
+    private func createButton(condition: Bool, title: String, action: @escaping () -> Void) -> some View {
         Group {
             if condition {
-                Button(action: action){
+                Button(action: action) {
                     Text(title)
                         .frame(minWidth: 0, maxWidth: .infinity)
                 }
@@ -66,7 +66,7 @@ struct NovelDisplayMenuView: View {
             } else {
                 Image(systemName: "xmark")
                     .padding()
-                    .frame(minWidth: 0,maxWidth: .infinity)
+                    .frame(minWidth: 0, maxWidth: .infinity)
                     .background(Color.gray)
                     .foregroundColor(.white)
                     .cornerRadius(10)

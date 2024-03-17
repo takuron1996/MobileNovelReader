@@ -14,13 +14,13 @@ import SwiftUI
 class Fetcher: ObservableObject {
     /// リクエスト中であるかどうかを示すフラグ。
     @Published var isLoading = false
-    
+
     weak var delegate: FetcherDelegate?
-    
-    init(delegate: FetcherDelegate){
+
+    init(delegate: FetcherDelegate) {
         self.delegate = delegate
     }
-    
+
     /// 指定されたURLリクエストを実行し、結果をデコードします。
     ///
     /// - Parameters:
@@ -31,79 +31,78 @@ class Fetcher: ObservableObject {
         Task { @MainActor in
             isLoading = true
         }
-        
+
         defer {
             Task { @MainActor in
                 isLoading = false
             }
         }
-        
+
         let accessToken = KeyChainManager.shared.read(account: KeyChainTokenData.accessToken.rawValue)
-        if let accessToken{
-            return try await self.tokenFetchData(request: request, accessToken: accessToken)
+        if let accessToken {
+            return try await tokenFetchData(request: request, accessToken: accessToken)
         }
-        let data = try await self.access(request: request)
+        let data = try await access(request: request)
         let jsonDecoder = JSONDecoder()
         jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
         return try jsonDecoder.decode(T.self, from: data)
     }
-    
-    private func access(request: URLRequest) async throws -> Data{
+
+    private func access(request: URLRequest) async throws -> Data {
         let (data, response) = try await URLSession.shared.data(for: request)
-        guard (response as? HTTPURLResponse)?.statusCode == 200 else{ throw FetchError.badRequest }
+        guard (response as? HTTPURLResponse)?.statusCode == 200 else { throw FetchError.badRequest }
         return data
     }
-    
+
     private func tokenFetchData<T: Codable>(request: URLRequest, accessToken: String) async throws -> T? {
-        var token_request = request
-        token_request.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+        var tokenRequest = request
+        tokenRequest.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
         let jsonDecoder = JSONDecoder()
         jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
-        let (data, response) = try await URLSession.shared.data(for: token_request)
+        let (data, response) = try await URLSession.shared.data(for: tokenRequest)
         if (response as? HTTPURLResponse)?.statusCode == 200 {
             return try jsonDecoder.decode(T.self, from: data)
-        }else if (response as? HTTPURLResponse)?.statusCode != 401{
+        } else if (response as? HTTPURLResponse)?.statusCode != 401 {
             // トークンの有効期限切れ以外
             throw FetchError.badRequest
         }
-        
+
         let errorData = try jsonDecoder.decode(ErrorData.self, from: data)
         guard errorData.error == "invalid_token" else {
             throw FetchError.badRequest
         }
-        
+
         // リフレッシュトークンでのトークン取得
         let refreshToken = KeyChainManager.shared.read(account: KeyChainTokenData.refreshToken.rawValue)
         if refreshToken == nil {
             delegate?.dataFetchFailed()
-            throw KeyChainError.FailureRead
+            throw KeyChainError.failureRead
         }
         let refreshTokenBody = RefreshTokenBody(refreshToken: refreshToken!)
-        guard let refresh_request = ApiRequest(endpoint: TokenEndpoint(tokenBody: refreshTokenBody)).request else{
+        guard let refreshRequest = ApiRequest(endpoint: TokenEndpoint(tokenBody: refreshTokenBody)).request else {
             delegate?.dataFetchFailed()
             throw FetchError.badRequest
         }
-        
-        var refresh_data: Data?
-        
-        do{
-            refresh_data = try await self.access(request: refresh_request)
-        }catch{
+
+        var refreshData: Data?
+
+        do {
+            refreshData = try await access(request: refreshRequest)
+        } catch {
             deleteTokenKeyChain()
             delegate?.dataFetchFailed()
             throw error
         }
-        
-        let tokenData = try jsonDecoder.decode(TokenData.self, from: refresh_data!)
+
+        let tokenData = try jsonDecoder.decode(TokenData.self, from: refreshData!)
         try setTokenKeyChain(tokenData: tokenData)
-        
+
         // 更新したアクセストークンで取得処理
-        var retry_request = request
-        retry_request.addValue("Bearer \(tokenData.accessToken)", forHTTPHeaderField: "Authorization")
-        let retry_data = try await self.access(request: retry_request)
-        return try jsonDecoder.decode(T.self, from: retry_data)
+        var retryRequest = request
+        retryRequest.addValue("Bearer \(tokenData.accessToken)", forHTTPHeaderField: "Authorization")
+        let retryData = try await access(request: retryRequest)
+        return try jsonDecoder.decode(T.self, from: retryData)
     }
-    
 }
 
 /// ネットワークリクエスト中に発生する可能性のあるエラーを表す列挙型。

@@ -13,11 +13,10 @@ import Foundation
 struct Config {
     /// APIの基本URL。
     let apiUrl: String
-    
+
     let apiKey: String
 }
 
-//TODO: コメント修正（apiKey）
 /// アプリケーション設定のグローバルインスタンス。
 ///
 /// このインスタンスはアプリケーションの起動時に`Info.plist`からAPIの基本URLを読み込みます。

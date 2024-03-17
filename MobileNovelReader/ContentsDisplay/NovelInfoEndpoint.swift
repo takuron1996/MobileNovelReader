@@ -7,15 +7,15 @@
 
 import Foundation
 
-struct NovelInfoEndpoint: Endpoint{
-    var url_string = "\(config.apiUrl)/api/novelinfo"
+struct NovelInfoEndpoint: Endpoint {
+    var urlString = "\(config.apiUrl)/api/novelinfo"
     var urlQueryItems: [URLQueryItem]?
     var httpBody: Codable?
     var httpMethod = HttpMethod.GET
-    
-    init(ncode: String){
+
+    init(ncode: String) {
         urlQueryItems = [
-            URLQueryItem(name: "ncode", value: ncode),
+            URLQueryItem(name: "ncode", value: ncode)
         ]
     }
 }

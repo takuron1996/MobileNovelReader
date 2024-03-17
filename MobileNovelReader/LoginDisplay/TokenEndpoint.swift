@@ -7,13 +7,13 @@
 
 import Foundation
 
-struct TokenEndpoint: Endpoint{
-    var url_string = "\(config.apiUrl)/api/token"
+struct TokenEndpoint: Endpoint {
+    var urlString = "\(config.apiUrl)/api/token"
     var urlQueryItems: [URLQueryItem]?
     var httpBody: Codable?
     var httpMethod: HttpMethod = .POST
-    
-    init(tokenBody: TokenBodyProtocol){
-        self.httpBody = tokenBody
+
+    init(tokenBody: TokenBodyProtocol) {
+        httpBody = tokenBody
     }
 }

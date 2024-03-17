@@ -10,20 +10,20 @@ import Foundation
 /// 参考
 /// [Keychainでデータをセキュリティを高めてローカルに保存する方法](https://appdev-room.com/swift-keychain)
 /// [iOS | KeyChain への保存、読込、削除処理を実装する](https://zenn.dev/u_dai/articles/c90b3c62ef2251)
-class KeyChainManager{
+class KeyChainManager {
     static let shared = KeyChainManager()
     private let service = "MobileNovelReader"
-    private init(){}
-    
+    private init() {}
+
     func save(_ stringData: String, account: String) -> Bool {
         let data: Data = stringData.data(using: .utf8)!
         let query = [
             kSecValueData: data,
             kSecClass: kSecClassGenericPassword,
             kSecAttrService: service,
-            kSecAttrAccount: account,
+            kSecAttrAccount: account
         ] as CFDictionary
-        
+
         let matchingStatus = SecItemCopyMatching(query, nil)
         switch matchingStatus {
         case errSecItemNotFound:
@@ -39,7 +39,7 @@ class KeyChainManager{
             return false
         }
     }
-    
+
     func read(account: String) -> String? {
         let query = [
             kSecAttrService: service,
@@ -47,50 +47,50 @@ class KeyChainManager{
             kSecClass: kSecClassGenericPassword,
             kSecReturnData: true
         ] as CFDictionary
-        
+
         var result: AnyObject?
         SecItemCopyMatching(query, &result)
-        
+
         if let data = (result as? Data) {
             return String(data: data, encoding: .utf8)
         } else {
             return nil
         }
     }
-    
+
     func delete(account: String) -> Bool {
         let query = [
             kSecAttrService: service,
             kSecAttrAccount: account,
-            kSecClass: kSecClassGenericPassword,
+            kSecClass: kSecClassGenericPassword
         ] as CFDictionary
-        
+
         let status = SecItemDelete(query)
         return status == noErr
     }
 }
 
-enum KeyChainError: Error{
-    case FailureSave
-    case FailureRead
-    case FailureDelete
+enum KeyChainError: Error {
+    case failureSave
+    case failureRead
+    case failureDelete
 }
 
-enum KeyChainTokenData: String{
+enum KeyChainTokenData: String {
     case accessToken
     case refreshToken
 }
 
-func setTokenKeyChain(tokenData: TokenData) throws{
+func setTokenKeyChain(tokenData: TokenData) throws {
     let tokenList = [
         (KeyChainTokenData.accessToken.rawValue, tokenData.accessToken),
         (KeyChainTokenData.refreshToken.rawValue, tokenData.refreshToken)
     ]
-    
+
     for (account, token) in tokenList {
-        guard KeyChainManager.shared.save(token, account: account) else{
+        guard KeyChainManager.shared.save(token, account: account) else {
             print("tokenの保存に失敗しました。")
-            throw KeyChainError.FailureSave
+            throw KeyChainError.failureSave
         }
     }
 }

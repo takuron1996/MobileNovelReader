@@ -1,7 +1,10 @@
 include:
   - base.yml
+packages:
+  SwiftLint:
+    url: https://github.com/realm/SwiftLint
+    majorVersion: 0.52.4
 # Local環境以外では埋め込まないこと（セキュリティ）
-# 
 settings:
   API_URL: http://localhost:8080
   API_KEY: 1f765fc8-05b2-b4a4-b290-0416ede7e712
@@ -11,3 +14,6 @@ targets:
       properties:
         API_URL: ${API_URL}
         API_KEY: ${API_KEY}
+    buildToolPlugins:
+      - plugin: SwiftLintPlugin
+        package: SwiftLint

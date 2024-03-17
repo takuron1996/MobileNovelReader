@@ -17,27 +17,27 @@ struct LoginDisplayView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                //TODO: 画像を表示予定
+                // TODO: 画像を表示予定
                 Text("ログイン")
                     .font(.title)
                     .padding(.bottom, 80)
-                
+
                 createTextField(iconName: "person", field: TextField("ID", text: $id)
                     .keyboardType(.alphabet))
-                
-                if isPasswordVisible{
+
+                if isPasswordVisible {
                     createTextField(iconName: "lock", field: TextField("Password", text: $password)
                         .keyboardType(.alphabet))
-                    .overlay(passwordVisibilityToggle)
-                }else{
+                        .overlay(passwordVisibilityToggle)
+                } else {
                     createTextField(iconName: "lock", field: SecureField("Password", text: $password)
                         .keyboardType(.alphabet))
-                    .overlay(passwordVisibilityToggle)
+                        .overlay(passwordVisibilityToggle)
                 }
-                
+
                 Button(action: {
                     login()
-                }){
+                }) {
                     Text("Log In")
                         .padding(.vertical, 10)
                         .font(.headline)
@@ -46,8 +46,8 @@ struct LoginDisplayView: View {
                         .foregroundColor(Color.white)
                         .cornerRadius(30)
                 }
-                
-                //TODO: ユーザー登録ページを後で作成
+
+                // TODO: ユーザー登録ページを後で作成
                 NavigationLink(destination: TmpSignUpView()) {
                     Text("Sign Up")
                         .padding(.vertical, 10)
@@ -57,8 +57,8 @@ struct LoginDisplayView: View {
                         .foregroundColor(Color.white)
                         .cornerRadius(30)
                 }.padding(5)
-                
-                //TODO: パスワード忘れページを後で作成
+
+                // TODO: パスワード忘れページを後で作成
                 NavigationLink(destination: TmpForgotPasswordView()) {
                     Text("パスワードを忘れた方はこちら")
                         .font(.subheadline)
@@ -72,24 +72,24 @@ struct LoginDisplayView: View {
             }
         }
     }
-    
-    private func login(){
-        Task{
+
+    private func login() {
+        Task {
             let passwordTokenBody = PasswordTokenBody(id: id, password: password)
-            guard let request = ApiRequest(endpoint: TokenEndpoint(tokenBody: passwordTokenBody)).request else{
+            guard let request = ApiRequest(endpoint: TokenEndpoint(tokenBody: passwordTokenBody)).request else {
                 throw FetchError.badRequest
             }
             let tokenData: TokenData? = try? await fetcher.fetchData(request: request)
             if let tokenData {
                 try setTokenKeyChain(tokenData: tokenData)
                 appState.isLogin = true
-            }else{
+            } else {
                 isFaild = true
             }
         }
     }
-    
-    private func createTextField<F: View>(iconName: String, field: F) -> some View{
+
+    private func createTextField<F: View>(iconName: String, field: F) -> some View {
         return HStack {
             Image(systemName: iconName)
             field
@@ -104,7 +104,7 @@ struct LoginDisplayView: View {
             alignment: .bottom
         )
     }
-    
+
     private var passwordVisibilityToggle: some View {
         HStack {
             Spacer()
@@ -117,7 +117,6 @@ struct LoginDisplayView: View {
             .padding(.trailing, 30)
         }
     }
-    
 }
 
 #Preview {

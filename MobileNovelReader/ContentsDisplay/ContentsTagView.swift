@@ -1,5 +1,5 @@
 //
-//  NovelInfoTagView.swift
+//  ContentsTagView.swift
 //  MobileNovelReader
 //
 //  Created by 池上拓 on 2024/02/11.
@@ -23,16 +23,16 @@ struct ContentsTagView: View {
             ForEach(tags, id: \.self) { tag in
                 item(for: tag)
                     .padding([.horizontal, .vertical], 4)
-                    .alignmentGuide(.leading, computeValue: { d in
-                        if abs(width - d.width) > containerWidth {
+                    .alignmentGuide(.leading, computeValue: { dim in
+                        if abs(width - dim.width) > containerWidth {
                             width = 0
-                            height -= d.height
+                            height -= dim.height
                         }
                         let result = width
                         if tag == tags.last {
                             width = 0
                         } else {
-                            width -= d.width
+                            width -= dim.width
                         }
                         return result
                     })
@@ -46,7 +46,7 @@ struct ContentsTagView: View {
             }
         }
     }
-    
+
     /// タグのテキストを元に、表示用のビューを生成します。
     ///
     /// - Parameter text: 表示するタグのテキスト。
@@ -63,7 +63,10 @@ struct ContentsTagView: View {
 
 #Preview {
     GeometryReader { geometry in
-        ContentsTagView(tags: ["タグ１", "タグ２", "タグ３","タグ4", "タグ5", "タグ6","タグ7", "タグ8", "タグ9"], containerWidth: geometry.size.width)
+        ContentsTagView(
+            tags: [
+                "タグ１", "タグ２", "タグ３", "タグ4",
+                "タグ5", "タグ6", "タグ7", "タグ8", "タグ9"],
+            containerWidth: geometry.size.width)
     }
-    
 }

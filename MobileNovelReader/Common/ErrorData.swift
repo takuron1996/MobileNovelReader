@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ErrorData: Codable{
+struct ErrorData: Codable {
     var error: String
     var errorDescription: String
 }

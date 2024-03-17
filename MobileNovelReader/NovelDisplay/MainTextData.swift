@@ -13,16 +13,16 @@
 struct MainText: Codable {
     /// エピソードのタイトル。
     var title: String
-    
+
     /// エピソードのサブタイトル。
     var subTitle: String
-    
+
     /// エピソードのメインテキストを段落ごとに分割した配列。
     var mainText: [String]
-    
+
     /// 前のエピソードが存在するかどうかを示すブール値。
     var prev: Bool
-    
+
     /// 次のエピソードが存在するかどうかを示すブール値。
     var next: Bool
 }

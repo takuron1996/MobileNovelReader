@@ -1,5 +1,5 @@
 //
-//  ContentsFotterView.swift
+//  ContentsFooterView.swift
 //  MobileNovelReader
 //
 //  Created by 池上拓 on 2024/02/12.
@@ -24,13 +24,13 @@ struct ContentsFooterView: View {
     /// モーダルビューを表示するかどうかを制御する状態。
     @State private var showFullScreenModal = false
     /// POSTフォローデータの状態。
-    @State private var PostFollowData: FollowData?
+    @State private var postFollowData: FollowData?
     /// DELETEフォローデータの状態。
-    @State private var DeleteFollowData: FollowData?
+    @State private var deleteFollowData: FollowData?
     /// プレゼンテーションモードの環境変数。
     @Environment(\.presentationMode) var presentationMode
     var body: some View {
-        HStack{
+        HStack {
             // 「戻る」ボタンの表示
             if presentationMode.wrappedValue.isPresented {
                 Button(action: {
@@ -41,24 +41,28 @@ struct ContentsFooterView: View {
                 }.padding(.leading, -10)
             }
             // 「読み始める」または「続きから読む」ボタン
-            if readEpisode == 0{
+            if readEpisode == 0 {
                 createButton(text: "1話目から読む", episode: 1)
-            }else{
+            } else {
                 createButton(text: "続きから読む", episode: readEpisode)
             }
             // 「フォローする」または「フォロー中」ボタン
-            if isFollow{
-                Button(action:{
-                    Task{
-                        guard let request = ApiRequest(endpoint: FollowEndpoint(httpMethod: .DELETE, ncode: ncode)).request else{
+            if isFollow {
+                Button(action: {
+                    Task {
+                        guard let request = ApiRequest(
+                            endpoint: FollowEndpoint(
+                                httpMethod: .DELETE,
+                                ncode: ncode))
+                            .request else {
                             throw FetchError.badRequest
                         }
-                        DeleteFollowData = try? await fetcher.fetchData(request: request)
-                        if let DeleteFollowData{
-                            isFollow = !DeleteFollowData.isSuccess
+                        deleteFollowData = try? await fetcher.fetchData(request: request)
+                        if let deleteFollowData {
+                            isFollow = !deleteFollowData.isSuccess
                         }
                     }
-                }){
+                }) {
                     Text("フォロー中")
                         .frame(minWidth: 0, maxWidth: 100, alignment: .center)
                         .padding(.all, 12)
@@ -68,19 +72,23 @@ struct ContentsFooterView: View {
                         .cornerRadius(30)
                 }
                 .padding(.leading, 10)
-            }else{
+            } else {
                 Button(action: {
-                    Task{
-                        guard let request = ApiRequest(endpoint: FollowEndpoint(httpMethod: .POST, ncode: ncode)).request else{
+                    Task {
+                        guard let request = ApiRequest(
+                            endpoint: FollowEndpoint(
+                                httpMethod: .POST,
+                                ncode: ncode))
+                            .request else {
                             throw FetchError.badRequest
                         }
-                        PostFollowData = try? await fetcher.fetchData(request: request)
-                        if let PostFollowData{
-                            isFollow = PostFollowData.isSuccess
+                        postFollowData = try? await fetcher.fetchData(request: request)
+                        if let postFollowData {
+                            isFollow = postFollowData.isSuccess
                         }
                     }
-                    
-                }){
+
+                }) {
                     Text("フォロー")
                         .frame(minWidth: 0, maxWidth: 100, alignment: .center)
                         .padding(.all, 12)
@@ -97,17 +105,17 @@ struct ContentsFooterView: View {
             }
         }
     }
-    
+
     /// 指定されたテキストとエピソード番号でボタンを生成します。
     ///
     /// - Parameters:
     ///   - text: ボタンに表示するテキスト。
     ///   - episode: 関連するエピソード番号。
     /// - Returns: 指定された設定で生成されたボタン。
-    private func createButton(text: String, episode:Int) -> some View{
-        return Button(action:{self.showFullScreenModal = true}) {
+    private func createButton(text: String, episode: Int) -> some View {
+        return Button(action: { self.showFullScreenModal = true }) {
             Text(text)
-                .frame(minWidth:0, maxWidth: 100,alignment: .center)
+                .frame(minWidth: 0, maxWidth: 100, alignment: .center)
                 .contentShape(Rectangle())
                 .padding(.all, 12)
                 .font(.footnote)
@@ -123,8 +131,8 @@ struct ContentsFooterView: View {
 }
 
 #Preview {
-    VStack{
-        ContentsFooterView(fetcher: Fetcher(delegate: AppState()),ncode: "n9636x", readEpisode: 2, isFollow: true)
-        ContentsFooterView(fetcher: Fetcher(delegate: AppState()),ncode: "n9636x", readEpisode: 0, isFollow: false)
+    VStack {
+        ContentsFooterView(fetcher: Fetcher(delegate: AppState()), ncode: "n9636x", readEpisode: 2, isFollow: true)
+        ContentsFooterView(fetcher: Fetcher(delegate: AppState()), ncode: "n9636x", readEpisode: 0, isFollow: false)
     }
 }

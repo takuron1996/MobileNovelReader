@@ -7,14 +7,14 @@
 
 import Foundation
 
-struct FollowEndpoint: Endpoint{
-    var url_string = "\(config.apiUrl)/api/follow"
+struct FollowEndpoint: Endpoint {
+    var urlString = "\(config.apiUrl)/api/follow"
     var urlQueryItems: [URLQueryItem]?
     var httpBody: Codable?
     var httpMethod: HttpMethod
-    
-    init(httpMethod: HttpMethod, ncode: String){
+
+    init(httpMethod: HttpMethod, ncode: String) {
         self.httpMethod = httpMethod
-        self.httpBody = FollowBody(ncode: ncode)
+        httpBody = FollowBody(ncode: ncode)
     }
 }
