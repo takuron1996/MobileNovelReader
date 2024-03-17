@@ -85,12 +85,16 @@ struct LoginDisplayView: View {
                     try setTokenKeyChain(tokenData: tokenData)
                     appState.isLogin = true
                 } else {
-                    print("ログインに失敗しました。")
                     isFaild = true
+                    print("ログインに失敗しました。")
                 }
             } catch {
-                print("ログインに失敗しました。")
                 isFaild = true
+                if let error = error as? FetchError {
+                    print("ログインに失敗しました: \(error.localizedDescription)")
+                } else {
+                    print("ログインに失敗しました。")
+                }
             }
         }
     }
