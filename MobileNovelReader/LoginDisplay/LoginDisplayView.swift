@@ -79,11 +79,17 @@ struct LoginDisplayView: View {
             guard let request = ApiRequest(endpoint: TokenEndpoint(tokenBody: passwordTokenBody)).request else {
                 throw FetchError.badRequest
             }
-            let tokenData: TokenData? = try? await fetcher.fetchData(request: request)
-            if let tokenData {
-                try setTokenKeyChain(tokenData: tokenData)
-                appState.isLogin = true
-            } else {
+            do {
+                let tokenData: TokenData? = try await fetcher.fetchData(request: request)
+                if let tokenData {
+                    try setTokenKeyChain(tokenData: tokenData)
+                    appState.isLogin = true
+                } else {
+                    print("ログインに失敗しました。")
+                    isFaild = true
+                }
+            } catch {
+                print("ログインに失敗しました。")
                 isFaild = true
             }
         }

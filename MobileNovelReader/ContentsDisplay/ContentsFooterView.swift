@@ -57,7 +57,11 @@ struct ContentsFooterView: View {
                             .request else {
                             throw FetchError.badRequest
                         }
-                        deleteFollowData = try? await fetcher.fetchData(request: request)
+                        do {
+                            deleteFollowData = try await fetcher.fetchData(request: request)
+                        } catch {
+                            print("Fetchに失敗しました。")
+                        }
                         if let deleteFollowData {
                             isFollow = !deleteFollowData.isSuccess
                         }
@@ -82,7 +86,11 @@ struct ContentsFooterView: View {
                             .request else {
                             throw FetchError.badRequest
                         }
-                        postFollowData = try? await fetcher.fetchData(request: request)
+                        do {
+                            postFollowData = try await fetcher.fetchData(request: request)
+                        } catch {
+                            print("Fetchに失敗しました。")
+                        }
                         if let postFollowData {
                             isFollow = postFollowData.isSuccess
                         }
