@@ -58,7 +58,7 @@ struct ContentsView: View {
                 do {
                     novelInfoData = try await fetcher.fetchData(request: request)
                 } catch {
-                    print("Fetchに失敗しました。")
+                    print("Fetchに失敗しました: \(error.localizedDescription)")
                 }
             }
         }

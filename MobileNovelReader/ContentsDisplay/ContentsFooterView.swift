@@ -60,7 +60,7 @@ struct ContentsFooterView: View {
                         do {
                             deleteFollowData = try await fetcher.fetchData(request: request)
                         } catch {
-                            print("Fetchに失敗しました。")
+                            print("フォロー解除のFetchに失敗しました: \(error.localizedDescription)")
                         }
                         if let deleteFollowData {
                             isFollow = !deleteFollowData.isSuccess
@@ -89,7 +89,7 @@ struct ContentsFooterView: View {
                         do {
                             postFollowData = try await fetcher.fetchData(request: request)
                         } catch {
-                            print("Fetchに失敗しました。")
+                            print("フォローのFetchに失敗しました: \(error.localizedDescription)")
                         }
                         if let postFollowData {
                             isFollow = postFollowData.isSuccess
