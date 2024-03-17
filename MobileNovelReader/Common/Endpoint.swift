@@ -37,7 +37,7 @@ struct ApiRequest {
             do {
                 request.httpBody = try jsonEncoder.encode(httpBody)
             } catch {
-                print("httpBodyのエンコードに失敗しました。")
+                print("httpBodyのエンコードに失敗しました: \(error.localizedDescription)")
             }
         }
         return request
