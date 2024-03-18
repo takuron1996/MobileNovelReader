@@ -34,7 +34,11 @@ struct ApiRequest {
         request.addValue(signature, forHTTPHeaderField: "Signature")
         request.httpMethod = endpoint.httpMethod.rawValue
         if let httpBody = endpoint.httpBody {
-            request.httpBody = try? jsonEncoder.encode(httpBody)
+            do {
+                request.httpBody = try jsonEncoder.encode(httpBody)
+            } catch {
+                print("httpBodyのエンコードに失敗しました: \(error.localizedDescription)")
+            }
         }
         return request
     }

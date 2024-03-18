@@ -126,7 +126,11 @@ struct NovelDisplayView: View {
             guard let request = ApiRequest(endpoint: MainTextEndpoint(ncode: ncode, episode: episode)).request else {
                 throw FetchError.badRequest
             }
-            mainTextData = try? await fetcher.fetchData(request: request)
+            do {
+                mainTextData = try await fetcher.fetchData(request: request)
+            } catch {
+                print("Fetchに失敗しました: \(error.localizedDescription)")
+            }
         }
     }
 }

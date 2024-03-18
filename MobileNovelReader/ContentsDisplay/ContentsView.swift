@@ -55,7 +55,11 @@ struct ContentsView: View {
                 guard let request = ApiRequest(endpoint: NovelInfoEndpoint(ncode: ncode)).request else {
                     throw FetchError.badRequest
                 }
-                novelInfoData = try? await fetcher.fetchData(request: request)
+                do {
+                    novelInfoData = try await fetcher.fetchData(request: request)
+                } catch {
+                    print("Fetchに失敗しました: \(error.localizedDescription)")
+                }
             }
         }
     }

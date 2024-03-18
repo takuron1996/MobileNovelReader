@@ -57,7 +57,11 @@ struct ContentsFooterView: View {
                             .request else {
                             throw FetchError.badRequest
                         }
-                        deleteFollowData = try? await fetcher.fetchData(request: request)
+                        do {
+                            deleteFollowData = try await fetcher.fetchData(request: request)
+                        } catch {
+                            print("フォロー解除のFetchに失敗しました: \(error.localizedDescription)")
+                        }
                         if let deleteFollowData {
                             isFollow = !deleteFollowData.isSuccess
                         }
@@ -82,7 +86,11 @@ struct ContentsFooterView: View {
                             .request else {
                             throw FetchError.badRequest
                         }
-                        postFollowData = try? await fetcher.fetchData(request: request)
+                        do {
+                            postFollowData = try await fetcher.fetchData(request: request)
+                        } catch {
+                            print("フォローのFetchに失敗しました: \(error.localizedDescription)")
+                        }
                         if let postFollowData {
                             isFollow = postFollowData.isSuccess
                         }
