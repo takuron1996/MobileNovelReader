@@ -22,15 +22,15 @@ struct LoginDisplayView: View {
                     .font(.title)
                     .padding(.bottom, 80)
 
-                createTextField(iconName: "person", field: TextField("ID", text: $id)
+                createTextField(iconName: "person", field: TextField("Eメール", text: $id)
                     .keyboardType(.alphabet))
 
                 if isPasswordVisible {
-                    createTextField(iconName: "lock", field: TextField("Password", text: $password)
+                    createTextField(iconName: "lock", field: TextField("パスワード", text: $password)
                         .keyboardType(.alphabet))
                         .overlay(passwordVisibilityToggle)
                 } else {
-                    createTextField(iconName: "lock", field: SecureField("Password", text: $password)
+                    createTextField(iconName: "lock", field: SecureField("パスワード", text: $password)
                         .keyboardType(.alphabet))
                         .overlay(passwordVisibilityToggle)
                 }
